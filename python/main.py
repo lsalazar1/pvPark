@@ -6,10 +6,10 @@ if __name__ == '__main__':
     connection = pymongo.MongoClient(getConnection())
 
     # Specify name of database
-    database = connection['test2']
+    database = connection['test']
 
     # Specify name of collection
-    collection = database['testCollection']
+    collection = database['parking']
 
     # Fake data we're sending to MongoDB -> Also JSON
     testData = {
