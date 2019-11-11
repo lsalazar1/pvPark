@@ -1,29 +1,15 @@
 from config import getConnection
+from ParkingLot import *
 import pymongo
 import dns
 
 if __name__ == '__main__':
     connection = pymongo.MongoClient(getConnection())
 
-    # Specify name of database
+    # Connect to DB called test
     database = connection['test']
 
-    # Specify name of collection
+    # Find a collection called parking
     collection = database['parking']
 
-    # Fake data we're sending to MongoDB -> Also JSON
-    testData = {
-        "parkingLot": "S.R. Collins",
-        "Sensors": [
-            {
-                "sensorID": "001",
-                "isVacant": False
-            },
-            {
-                "sensorID": "002",
-                "isVacant": True
-            }
-        ]
-    }
-
-    collection.insert_one(testData)
+    # collection.insert_one(testData)

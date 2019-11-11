@@ -1,73 +1,77 @@
-# The gpiozero library allows easier coding of Raspberry Pi components
 from gpiozero import DistanceSensor
+from time import sleep 
 import json
 
 class ParkingLot:
-    sensorsArray = []
-
-    # Initialize the instance with lotName and numSensors set to 0
+    # Basically a constructor
     def __init__(self, lotName, totalSpots):
         self.lotName = lotName
-        self.numSensors = 0
         self.totalSpots = totalSpots
-    
-    # Returns the number of sensors in sensorsArray
-    def countSensors(self):
-        return len(self.sensorsArray)
+        self.parkingLot = {}
+        self.sensorsList = []
 
-    # Create a sensor obj with the Echo GPIO and Trigger GPIO as params
-    def sensor(self, echo, trigger):        
-        # Every index in the sensorsArray will have this initial dictionary... Info about each sensor
-        sensorInfo = {
+    def countSensors(self):
+        return len(self.sensorsList)
+
+    # Returns the difference of totalSpots in parking lot and available spots
+    def countAvailableSpots(self):
+        spotsTaken = 0
+
+        for item in self.sensorsList:
+            if item["isVacant"] == False:
+                spotsTaken += 1
+        
+        return self.totalSpots - spotsTaken
+
+    # Create a sensor for parking lot with echo and trigger as params
+    def createSensor(self, echo, trigger):
+        # Each index in sensorsList will have this object per sensor
+        info = {
             "sensorID": "",
             "isVacant": False,
             "echo": echo,
             "trigger": trigger
         }
 
-         # The naming convetion for each sensor will be the first three chars of the lot name + it's index in the sensorsArray
-        sensorInfo["sensorID"] = self.lotName[:3] + str(self.countSensors())
+        sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.02, threshold_distance=0.005)
 
-        # Get initial reading of parking space
-        if self.isVacant():
-            sensorInfo["isVacant"] = True
- 
-        # Add the sensorInfo object to sensorsArray
-        self.sensorsArray.append(sensorInfo)
+        # Naming convention is first three chars of lot name and place in sensorsList
+        info["sensorID"] = self.lotName[:3] + str(self.countSensors())
 
-        # Increment by num of sensors by 1
-        self.numSensors += 1
-    
-    # Read state of parking spot using sensor to see if it's occupied
-    def isVacant(self):
+        print("Sensor %s is initializing" % info["sensorID"])
+
+        # Alters info["isVacant"] value based on sensor's reading... use sensor as a param 
+        info["isVacant"] = self.isVacant(sensor)
+
+        self.sensorsList.append(info)
+
+    # Checks if parking spot is vacant using sensor as param
+    def isVacant(self, sensor):
+        # Converts meters to cm        
+        distance = sensor.distance * 100
+
+        if distance < 2:
+            return False
+        
         return True
-    
-    # def updateLotStatus(self):
-    #     for item in self.sensorsArray:
-    #         # Create sensor 
-            
-    #         # call isVacant()
 
     def createJSON(self):
-        parkingLot = {}
+        self.parkingLot["lotName"] = self.lotName
+        self.parkingLot["totalSpots"] = self.totalSpots
+        self.parkingLot["netSpotsAfterCars"] = self.countAvailableSpots()
+        self.parkingLot["sensors"] = self.sensorsList
 
-        parkingLot["lotName"] = self.lotName
-        parkingLot["totalSpots"] = self.totalSpots
-        parkingLot["sensors"] = self.sensorsArray
-
-        return json.dumps(parkingLot)        
-
-
+        return json.dumps(self.parkingLot)
         
 
 
 
-# For testing purposes
-y = ParkingLot('SRCollins', 168)
+# # For testing purposes
+# y = ParkingLot('SRCollins', 168)
 
-y.sensor(18, 23)
-y.sensor(5, 6)
-print(y.sensorsArray)
-#y.updateLotStatus()
-x = json.loads(y.createJSON())
-print(x)
+# y.sensor(18, 23)
+# y.sensor(5, 6)
+# print(y.sensorsArray)
+# #y.updateLotStatus()
+# x = json.loads(y.createJSON())
+# print(x)
