@@ -4,12 +4,13 @@ import pymongo
 import dns
 
 if __name__ == '__main__':
+    # Establish a connection using string connector in default.ini
     connection = pymongo.MongoClient(getConnection())
 
-    # Connect to DB called test
+    # Find the database called 'test'...
     database = connection['test']
 
-    # Find a collection called parking
+    # Within the 'test' database, find a collection called 'parking'...
     collection = database['parking']
-
-    # collection.insert_one(testData)
+    
+    # Create an instance of the ParkingLot class below this line 
