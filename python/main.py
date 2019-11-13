@@ -24,3 +24,5 @@ if __name__ == '__main__':
     
     # Post dictionary to db
     collection.insert_one(SR_Collins.createDictionary())
+
+    print('Hello')
