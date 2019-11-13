@@ -12,5 +12,3 @@ if __name__ == '__main__':
 
     # Within the 'test' database, find a collection called 'parking'...
     collection = database['parking']
-    
-    print("Hello World")
