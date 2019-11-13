@@ -50,11 +50,9 @@ class ParkingLot:
         # Converts meters to cm        
         distance = sensor.distance * 100
 
-        if distance < 2:
-            return False
-        
-        return True
+        return False if distance < 2 else True
 
+    # Allows each parking lot instance to create a json file, ready to be shipped to the cloud
     def createJSON(self):
         self.parkingLot["lotName"] = self.lotName
         self.parkingLot["totalSpots"] = self.totalSpots
@@ -62,16 +60,3 @@ class ParkingLot:
         self.parkingLot["sensors"] = self.sensorsList
 
         return json.dumps(self.parkingLot)
-        
-
-
-
-# # For testing purposes
-# y = ParkingLot('SRCollins', 168)
-
-# y.sensor(18, 23)
-# y.sensor(5, 6)
-# print(y.sensorsArray)
-# #y.updateLotStatus()
-# x = json.loads(y.createJSON())
-# print(x)
