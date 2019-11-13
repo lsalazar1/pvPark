@@ -13,4 +13,3 @@ if __name__ == '__main__':
     # Within the 'test' database, find a collection called 'parking'...
     collection = database['parking']
     
-    # Create an instance of the ParkingLot class below this line 

@@ -24,7 +24,7 @@ class ParkingLot:
         return self.totalSpots - spotsTaken
 
     # Create a sensor for parking lot with echo and trigger as params
-    def createSensor(self, echo, trigger):
+    def createUltrasonic(self, echo, trigger):
         # Each index in sensorsList will have this object per sensor
         info = {
             "sensorID": "",
