@@ -53,10 +53,10 @@ class ParkingLot:
         return False if distance < 2 else True
 
     # Allows each parking lot instance to create a json file, ready to be shipped to the cloud
-    def createJSON(self):
+    def createDictionary(self):
         self.parkingLot["lotName"] = self.lotName
         self.parkingLot["totalSpots"] = self.totalSpots
         self.parkingLot["netSpotsAfterCars"] = self.countAvailableSpots()
         self.parkingLot["sensors"] = self.sensorsList
 
-        return json.dumps(self.parkingLot)
+        return self.parkingLot
