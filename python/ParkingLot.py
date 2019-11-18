@@ -1,6 +1,5 @@
 from gpiozero import DistanceSensor
 from time import sleep 
-import json
 
 class ParkingLot:
     # Basically a constructor
