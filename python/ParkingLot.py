@@ -10,8 +10,6 @@ class ParkingLot:
     def __init__(self, lotName, totalSpots):
         self.lotName = lotName
         self.totalSpots = totalSpots
-        self.parkingLot = {}
-        self.sensorsList = []
 
         # Connect to mongodb using connection string
         self.connection = pymongo.MongoClient(getConnection())
@@ -24,20 +22,21 @@ class ParkingLot:
 
 
     def countSensors(self):
-        return len(self.sensorsList)
+        return self.collection.count()
 
     # Returns the difference of totalSpots in parking lot and available spots
     def countAvailableSpots(self):
         spotsTaken = 0
+        col = list(self.collection.find())
 
-        for item in self.sensorsList:
-            if item["isVacant"] == False:
+        for document in col:
+            if document["isVacant"] == False:
                 spotsTaken += 1
         
         return self.totalSpots - spotsTaken
 
     # Create a sensor for parking lot with echo and trigger as params
-    def createUltrasonic(self, echo, trigger):
+    def createUS(self, echo, trigger):
         # Each index in sensorsList will have this object per sensor
         info = {
             "_id": "",
@@ -46,34 +45,44 @@ class ParkingLot:
             "trigger": trigger
         }
 
-        sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.02, threshold_distance=0.005)
+        sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance=0.005)
 
         # Naming convention is first three chars of lot name and place in sensorsList
         info["_id"] = self.lotName[:3] + str(self.countSensors())
 
-        print("Sensor %s is initializing" % info["sensorID"])
+        print("Sensor %s is initializing" % info["_id"])
 
         # Alters info["isVacant"] value based on sensor's reading... use sensor as a param 
         info["isVacant"] = self.isVacant(sensor)
 
         self.collection.insert_one(info)
+        
+        sensor.close()
 
     # Checks if parking spot is vacant using sensor as param
     def isVacant(self, sensor):
         # Converts meters to cm        
-        distance = sensor.distance * 100
+        distance = sensor.distance
 
-        return False if distance < 2 else True
+        return False if distance < 0.04 else True
 
-    # Allows each parking lot instance to create a json file, ready to be shipped to the cloud
-    def createDictionary(self):
-        self.parkingLot["lotName"] = self.lotName
-        self.parkingLot["totalSpots"] = self.totalSpots
-        self.parkingLot["netSpotsAfterCars"] = self.countAvailableSpots()
-        self.parkingLot["sensors"] = self.sensorsList
+    # Loop through each document in the lot's collection and track the changes within the spaces
+    def run(self):
+        col = list(self.collection.find())
 
-        return self.parkingLot
+        for doc in col:
+            echo = doc["echo"]
+            trigger = doc["trigger"]
 
-# x = ParkingLot("SR Collins", 168)
+            sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance = 0.005)
 
-# x.createUltrasonic(echo=23, trigger=24)
+            vacant = self.isVacant(sensor)
+            
+            sensor.close()
+
+            self.collection.update_one(
+                doc, 
+                {'$set' : {'isVacant' : vacant}}
+            )
+        
+        print(self.countAvailableSpots())
