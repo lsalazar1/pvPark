@@ -74,6 +74,6 @@ class ParkingLot:
 
         return self.parkingLot
 
-x = ParkingLot("SR Collins", 168)
+# x = ParkingLot("SR Collins", 168)
 
-x.createUltrasonic(echo=23, trigger=24)
+# x.createUltrasonic(echo=23, trigger=24)
