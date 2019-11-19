@@ -1,5 +1,9 @@
 from gpiozero import DistanceSensor
+from config import getConnection
 from time import sleep 
+
+import pymongo
+import dns
 
 class ParkingLot:
     # Basically a constructor
@@ -8,6 +12,8 @@ class ParkingLot:
         self.totalSpots = totalSpots
         self.parkingLot = {}
         self.sensorsList = []
+
+        #
 
     def countSensors(self):
         return len(self.sensorsList)
