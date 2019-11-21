@@ -1,6 +1,7 @@
 from gpiozero import DistanceSensor
 from config import getConnection
 from time import sleep 
+import RPi.GPIO as GPIO
 
 import pymongo
 import dns
@@ -41,6 +42,7 @@ class ParkingLot:
         info = {
             "_id": "",
             "isVacant": False,
+            "sensorType": "US",
             "echo": echo,
             "trigger": trigger
         }
@@ -66,6 +68,24 @@ class ParkingLot:
 
         return False if distance < 0.04 else True
 
+    def createIR(self, out):
+        info = {
+            "_id": "",
+            "isVacant": False,
+            "out": out,
+            "sensorType": "IR"
+        }
+
+        info["_id"] = self.lotName[:3] + str(self.countSensors())
+        pin = out
+
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(pin,GPIO.IN)
+
+
+       
+
+
     # Loop through each document in the lot's collection and track the changes within the spaces
     def run(self):
         col = list(self.collection.find())
@@ -86,3 +106,4 @@ class ParkingLot:
             )
         
         print(self.countAvailableSpots())
+
