@@ -1,8 +1,8 @@
 from gpiozero import DistanceSensor
 from config import getConnection
-from time import sleep 
-import RPi.GPIO as GPIO
+from time import sleep
 
+import RPi.GPIO as GPIO
 import pymongo
 import dns
 
