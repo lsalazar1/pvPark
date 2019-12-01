@@ -25,6 +25,7 @@ class ParkingLot:
     def countSensors(self):
         return self.collection.count()
 
+
     # Returns the difference of totalSpots in parking lot and available spots
     def countAvailableSpots(self):
         spotsTaken = 0
@@ -36,7 +37,8 @@ class ParkingLot:
         
         return self.totalSpots - spotsTaken
 
-    # Create a sensor for parking lot with echo and trigger as params
+
+    # Congifures an ultrasonic sensor for parking lot with echo and trigger as params
     def createUS(self, echo, trigger):
         # Each index in sensorsList will have this object per sensor
         info = {
@@ -61,6 +63,7 @@ class ParkingLot:
         
         sensor.close()
 
+
     # Checks if parking spot is vacant using sensor as param
     def isVacant(self, sensor):
         # Converts meters to cm        
@@ -68,6 +71,8 @@ class ParkingLot:
 
         return False if distance < 0.04 else True
 
+
+    # Configures an IR sensor for the parking lot
     def createIR(self, out):
         info = {
             "_id": "",
@@ -81,9 +86,6 @@ class ParkingLot:
 
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(pin,GPIO.IN)
-
-
-       
 
 
     # Loop through each document in the lot's collection and track the changes within the spaces
