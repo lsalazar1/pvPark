@@ -1,8 +1,8 @@
 from gpiozero import DistanceSensor
 from config import getConnection
-from time import sleep 
-import RPi.GPIO as GPIO
+from time import sleep
 
+import RPi.GPIO as GPIO
 import pymongo
 import dns
 
@@ -20,12 +20,13 @@ class ParkingLot:
 
         # Create/Search for a collection with lot name
         self.collection = self.database[self.lotName]
-
-
+    
+    
+    # Counts the number of sensors available to the parking lot's collection
     def countSensors(self):
         return self.collection.count()
-
-
+    
+    
     # Returns the difference of totalSpots in parking lot and available spots
     def countAvailableSpots(self):
         spotsTaken = 0
@@ -36,9 +37,9 @@ class ParkingLot:
                 spotsTaken += 1
         
         return self.totalSpots - spotsTaken
-
-
-    # Congifures an ultrasonic sensor for parking lot with echo and trigger as params
+    
+    
+    # Create a sensor for parking lot with echo and trigger as params
     def createUS(self, echo, trigger):
         # Each index in sensorsList will have this object per sensor
         info = {
@@ -62,17 +63,16 @@ class ParkingLot:
         self.collection.insert_one(info)
         
         sensor.close()
-
-
+    
+    
     # Checks if parking spot is vacant using sensor as param
     def isVacant(self, sensor):
         # Converts meters to cm        
         distance = sensor.distance
 
         return False if distance < 0.04 else True
-
-
-    # Configures an IR sensor for the parking lot
+    
+    # Creates an IR sensor for the parking lot with the OUT pin as a param
     def createIR(self, out):
         info = {
             "_id": "",
