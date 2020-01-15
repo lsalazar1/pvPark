@@ -109,3 +109,7 @@ class ParkingLot:
         
         print("Total Parking Spaces in ", self.countAvailableSpots())
 
+    def killProgram(self):
+        self.collection.drop()
+        print('Killing program')
+
