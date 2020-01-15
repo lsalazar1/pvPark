@@ -6,3 +6,4 @@ python/default.ini
 python/__pycache__
 
 python/ir.py
+python/*.pyc
