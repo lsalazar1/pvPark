@@ -107,5 +107,5 @@ class ParkingLot:
                 {'$set' : {'isVacant' : vacant}}
             )
         
-        print("Total Parking Spaces in ", self.lotName, ": ",self.countAvailableSpots())
+        print("Total Parking Spaces in ", self.countAvailableSpots())
 
