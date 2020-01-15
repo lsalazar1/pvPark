@@ -109,6 +109,7 @@ class ParkingLot:
         
         print("Total Parking Spaces in ", self.countAvailableSpots())
 
+    # Drops parking lot's collection within Mongo when stopping the script via keyboard
     def killProgram(self):
         self.collection.drop()
         print('Killing program')
