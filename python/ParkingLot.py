@@ -72,7 +72,6 @@ class ParkingLot:
 
         return False if distance < 0.04 else True
     
-    
     # Creates an IR sensor for the parking lot with the OUT pin as a param
     def createIR(self, out):
         info = {
@@ -108,5 +107,5 @@ class ParkingLot:
                 {'$set' : {'isVacant' : vacant}}
             )
         
-        print(self.countAvailableSpots())
+        print("Total Parking Spaces in ", self.lotName, ": ",self.countAvailableSpots())
 

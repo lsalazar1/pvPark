@@ -8,8 +8,8 @@ if __name__ == '__main__':
    SRC.createUS(echo = 22, trigger = 27)
    
    while True:
-       print('Checking for changes in Parking Lot')
+       print('\nChecking for changes in Parking Lot...')
        SRC.run()
-       sleep(10)
+       sleep(15)
    
    
