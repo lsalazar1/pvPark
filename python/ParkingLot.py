@@ -1,3 +1,6 @@
+# Purpose: ParkingLot class has all the methods this program will need for the RPi to communicate with MongoDB
+# Author: Liam Salazar
+
 from gpiozero import DistanceSensor
 from config import getConnection
 from time import sleep
