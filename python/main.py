@@ -1,28 +1,19 @@
 from ParkingLot import *
-from config import getConnection
-
-import pymongo
-import dns
 
 if __name__ == '__main__':
-    # Establish a connection to the MongoDB cluster using getConnection()
-    connection = pymongo.MongoClient(getConnection())
+       SRC = ParkingLot('SRCollins', 168)
 
-    # Find the database called 'test'...
-    database = connection['test']
+       # Ultrasonic Sensors    
+       SRC.createUS(echo = 24,trigger = 23)    
+       SRC.createUS(echo = 22, trigger = 27)
+       SRC.createUS(echo = 13, trigger = 6)
 
-    # Find a collection within the test db called 'parking'
-    collection = database['parking']
-
-    # Create an object
-    SR_Collins = ParkingLot('SRCOllins', 168)
-
-    # Create a sensor
-    SR_Collins.createUltrasonic(echo = 24, trigger = 23)
-
-    print(SR_Collins.createDictionary())
-    
-    # Post dictionary to db
-    collection.insert_one(SR_Collins.createDictionary())
-
-    print('Hello')
+       try:
+              while True:
+                     print('\nChecking for changes in Parking Lot...')
+                     SRC.run()
+                     sleep(15)
+       except KeyboardInterrupt:
+              SRC.killProgram()
+   
+   
