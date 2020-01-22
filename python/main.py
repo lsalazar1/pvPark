@@ -6,6 +6,7 @@ if __name__ == '__main__':
        # Ultrasonic Sensors    
        SRC.createUS(echo = 24,trigger = 23)    
        SRC.createUS(echo = 22, trigger = 27)
+       SRC.createUS(echo = 13, trigger = 6)
 
        try:
               while True:
