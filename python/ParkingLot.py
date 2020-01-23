@@ -5,7 +5,6 @@ from gpiozero import DistanceSensor
 from config import getConnection
 from time import sleep
 
-import RPi.GPIO as GPIO
 import pymongo
 import dns
 
@@ -44,28 +43,41 @@ class ParkingLot:
     
     # Create a sensor for parking lot with echo and trigger as params
     def createUS(self, echo, trigger):
-        # Each index in sensorsList will have this object per sensor
-        info = {
-            "_id": "",
-            "isVacant": False,
-            "sensorType": "US",
-            "echo": echo,
-            "trigger": trigger
-        }
+        col = list(self.collection.find())
 
-        sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance=0.005)
+        for doc in col:
+            if (doc['echo'] == echo and doc['trigger'] == trigger):
+                sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance = 0.005)
 
-        # Naming convention is first three chars of lot name and place in sensorsList
-        info["_id"] = self.lotName[:3] + str(self.countSensors())
+                vacant = self.isVacant(sensor)
+            
+                sensor.close()
 
-        print("Sensor %s is initializing" % info["_id"])
+                self.collection.update_one(
+                    doc, 
+                    {'$set' : {'isVacant' : vacant}}
+                )
+            else:
+                # Each index in sensorsList will have this object per sensor
+                info = {
+                    "_id": "",
+                    "isVacant": False,
+                    "sensorType": "US",
+                    "echo": echo,
+                    "trigger": trigger
+                }
 
-        # Alters info["isVacant"] value based on sensor's reading... use sensor as a param 
-        info["isVacant"] = self.isVacant(sensor)
+                sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance=0.005)
 
-        self.collection.insert_one(info)
-        
-        sensor.close()
+                # Naming convention is first three chars of lot name and place in sensorsList
+                info["_id"] = self.lotName[:3] + str(self.countSensors())
+                print("Sensor %s is initializing" % info["_id"])
+
+                # Alters info["isVacant"] value based on sensor's reading... use sensor as a param 
+                info["isVacant"] = self.isVacant(sensor)
+
+                self.collection.insert_one(info)
+                sensor.close()
     
     
     # Checks if parking spot is vacant using sensor as param
@@ -74,21 +86,6 @@ class ParkingLot:
         distance = sensor.distance
 
         return False if distance < 0.04 else True
-    
-    # Creates an IR sensor for the parking lot with the OUT pin as a param
-    def createIR(self, out):
-        info = {
-            "_id": "",
-            "isVacant": False,
-            "out": out,
-            "sensorType": "IR"
-        }
-
-        info["_id"] = self.lotName[:3] + str(self.countSensors())
-        pin = out
-
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(pin,GPIO.IN)
 
 
     # Loop through each document in the lot's collection and track the changes within the spaces
