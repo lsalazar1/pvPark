@@ -87,7 +87,6 @@ class ParkingLot:
 
         return False if distance < 0.04 else True
 
-
     # Loop through each document in the lot's collection and track the changes within the spaces
     def run(self):
         col = list(self.collection.find())
