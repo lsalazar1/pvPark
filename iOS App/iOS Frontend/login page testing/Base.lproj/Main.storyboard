@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" userLabel="Login View Controller" customClass="ViewController" customModule="login_page_testing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4W3-1q-GJc">
+                                <rect key="frame" x="0.0" y="-1" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qFn-r0-e03">
+                                <rect key="frame" x="0.0" y="342" width="414" height="212"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qS2-y7-ZgC">
+                                        <rect key="frame" x="42" y="91" width="335" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8W7-hs-7nX">
+                                        <rect key="frame" x="42" y="151" width="111" height="61"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="22"/>
+                                        <state key="normal" title="Login" backgroundImage="login button blue.png">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="tLh-Dn-x82" kind="show" id="clw-k9-8vn"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FX4-il-Dm9">
+                                        <rect key="frame" x="42" y="37" width="335" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exc-C2-mrv">
+                                        <rect key="frame" x="147" y="119" width="124" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                                        <state key="normal" title="Forgot Password?"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eV-ga-yzW">
+                                        <rect key="frame" x="266" y="151" width="111" height="61"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="22"/>
+                                        <state key="normal" title="Register" backgroundImage="login button blue.png">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LOGO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYO-CB-oOK">
+                                <rect key="frame" x="0.0" y="54" width="414" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="50"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="videoView" destination="4W3-1q-GJc" id="mIA-sL-t2N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="Vbx-z2-RjC">
+            <objects>
+                <viewController id="tLh-Dn-x82" customClass="HomeViewController" customModule="login_page_testing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oY5-Pc-Gek">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TSH-bG-y1g" userLabel="Home Video View">
+                                <rect key="frame" x="0.0" y="-54" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Welcome Shawn!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5m-4a-QYd">
+                                <rect key="frame" x="0.0" y="34" width="414" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="EWN-Mr-PzJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qd3-rf-Jka" userLabel="Options">
+                                <rect key="frame" x="10" y="0.0" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="Wu7-LA-dCN"/>
+                                    <constraint firstAttribute="height" constant="32" id="adH-gi-yo3"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="settings.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIL-tU-yjZ" userLabel="Help">
+                                <rect key="frame" x="372" y="0.0" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="EJq-Ae-yci"/>
+                                    <constraint firstAttribute="height" constant="32" id="Lcq-OC-WG2"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="help2.png"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Don't Text &amp; Drive&quot;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smS-Bb-XT5">
+                                <rect key="frame" x="0.0" y="84" width="414" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="W83-MB-NKW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Optima-Italic" family="Optima" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kp5-xM-Ph3">
+                                <rect key="frame" x="57" y="133" width="300" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="q0j-sK-ln9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="30"/>
+                                <state key="normal" title=" S.R. Collins" backgroundImage="srcollins.jpg">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHw-Ml-zME">
+                                <rect key="frame" x="57" y="343" width="300" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="toS-wM-7Xm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="30"/>
+                                <state key="normal" title=" MSC" backgroundImage="msc.jpg">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOr-fV-z8Y">
+                                <rect key="frame" x="57" y="448" width="300" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="9oI-Du-fPA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="30"/>
+                                <state key="normal" title=" Business &amp; AG" backgroundImage="business.jpg">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHp-HX-e7d">
+                                <rect key="frame" x="57" y="553" width="300" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="8wX-v0-555"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="30"/>
+                                <state key="normal" title=" Test" backgroundImage="test.png">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFM-ZS-adl">
+                                <rect key="frame" x="57" y="238" width="300" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="DLh-M9-ekV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="30"/>
+                                <state key="normal" title=" Delco" backgroundImage="delco.jpg">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gOr-fV-z8Y" firstAttribute="top" secondItem="iHw-Ml-zME" secondAttribute="bottom" constant="30" id="2Ci-He-H0o"/>
+                            <constraint firstItem="04d-Su-bEZ" firstAttribute="trailing" secondItem="kp5-xM-Ph3" secondAttribute="trailing" constant="57" id="4oo-7g-bAp"/>
+                            <constraint firstItem="04d-Su-bEZ" firstAttribute="trailing" secondItem="iHw-Ml-zME" secondAttribute="trailing" constant="57" id="6qy-xs-Btv"/>
+                            <constraint firstItem="smS-Bb-XT5" firstAttribute="leading" secondItem="04d-Su-bEZ" secondAttribute="leading" id="9C6-ad-mMx"/>
+                            <constraint firstItem="zFM-ZS-adl" firstAttribute="leading" secondItem="04d-Su-bEZ" secondAttribute="leading" constant="57" id="DFp-JW-ERU"/>
+                            <constraint firstItem="smS-Bb-XT5" firstAttribute="top" secondItem="H5m-4a-QYd" secondAttribute="bottom" constant="5" id="Fum-dj-hi8"/>
+                            <constraint firstItem="gOr-fV-z8Y" firstAttribute="leading" secondItem="04d-Su-bEZ" secondAttribute="leading" constant="57" id="Ol5-kk-YOK"/>
+                            <constraint firstItem="04d-Su-bEZ" firstAttribute="trailing" secondItem="zFM-ZS-adl" secondAttribute="trailing" constant="57" id="RBQ-UP-YPC"/>
+                            <constraint firstItem="Qd3-rf-Jka" firstAttribute="top" secondItem="04d-Su-bEZ" secondAttribute="top" id="Tus-Ex-Gmg"/>
+                            <constraint firstItem="04d-Su-bEZ" firstAttribute="trailing" secondItem="ZHp-HX-e7d" secondAttribute="trailing" constant="57" id="WV5-at-a7j"/>
+                            <constraint firstItem="kp5-xM-Ph3" firstAttribute="leading" secondItem="04d-Su-bEZ" secondAttribute="leading" constant="57" id="Xr0-ye-cy3"/>
+                            <constraint firstItem="04d-Su-bEZ" firstAttribute="trailing" secondItem="smS-Bb-XT5" secondAttribute="trailing" id="bIO-QT-ePD"/>
+                            <constraint firstItem="H5m-4a-QYd" firstAttribute="leading" secondItem="04d-Su-bEZ" secondAttribute="leading" id="baf-4M-J1Q"/>
+                            <constraint firstItem="H5m-4a-QYd" firstAttribute="top" secondItem="Qd3-rf-Jka" secondAttribute="bottom" constant="2" id="dUd-kE-2pY"/>
+                            <constraint firstItem="04d-Su-bEZ" firstAttribute="trailing" secondItem="gOr-fV-z8Y" secondAttribute="trailing" constant="57" id="dui-BQ-BkV"/>
+                            <constraint firstItem="H5m-4a-QYd" firstAttribute="trailing" secondItem="04d-Su-bEZ" secondAttribute="trailing" id="fS9-yI-fqH"/>
+                            <constraint firstItem="ZHp-HX-e7d" firstAttribute="top" secondItem="gOr-fV-z8Y" secondAttribute="bottom" constant="30" id="gRY-qe-bFN"/>
+                            <constraint firstItem="iHw-Ml-zME" firstAttribute="leading" secondItem="04d-Su-bEZ" secondAttribute="leading" constant="57" id="goL-MG-LsF"/>
+                            <constraint firstItem="iHw-Ml-zME" firstAttribute="top" secondItem="zFM-ZS-adl" secondAttribute="bottom" constant="30" id="jeu-Kg-UJU"/>
+                            <constraint firstItem="zFM-ZS-adl" firstAttribute="top" secondItem="kp5-xM-Ph3" secondAttribute="bottom" constant="30" id="ldE-vd-Pzu"/>
+                            <constraint firstItem="Qd3-rf-Jka" firstAttribute="leading" secondItem="04d-Su-bEZ" secondAttribute="leading" constant="10" id="nfZ-qo-H5U"/>
+                            <constraint firstItem="04d-Su-bEZ" firstAttribute="trailing" secondItem="pIL-tU-yjZ" secondAttribute="trailing" constant="10" id="rIU-Sw-UBB"/>
+                            <constraint firstItem="kp5-xM-Ph3" firstAttribute="top" secondItem="smS-Bb-XT5" secondAttribute="bottom" constant="25" id="urB-zT-moT"/>
+                            <constraint firstItem="ZHp-HX-e7d" firstAttribute="leading" secondItem="04d-Su-bEZ" secondAttribute="leading" constant="57" id="vMj-UO-le2"/>
+                            <constraint firstItem="pIL-tU-yjZ" firstAttribute="top" secondItem="04d-Su-bEZ" secondAttribute="top" id="vPy-c5-SsF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="04d-Su-bEZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="homeViewOutlet" destination="TSH-bG-y1g" id="qCg-87-UPF"/>
+                        <outlet property="roundedButton" destination="kp5-xM-Ph3" id="Rz3-Ty-f2M"/>
+                        <outlet property="roundedButton1" destination="zFM-ZS-adl" id="XEk-Jx-mOP"/>
+                        <outlet property="roundedButton2" destination="iHw-Ml-zME" id="t05-Zu-FDD"/>
+                        <outlet property="roundedButton3" destination="gOr-fV-z8Y" id="62V-Zx-cTz"/>
+                        <outlet property="roundedButton4" destination="ZHp-HX-e7d" id="xR2-Oc-6YC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GHa-aa-kiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1113.0434782608697" y="140.625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="business.jpg" width="288" height="154.55999755859375"/>
+        <image name="delco.jpg" width="338" height="124"/>
+        <image name="help2.png" width="64" height="64"/>
+        <image name="login button blue.png" width="800" height="369"/>
+        <image name="msc.jpg" width="365" height="126"/>
+        <image name="settings.png" width="64" height="64"/>
+        <image name="srcollins.jpg" width="300" height="75"/>
+        <image name="test.png" width="649" height="220"/>
+    </resources>
+</document>
