@@ -31,15 +31,25 @@ class ParkingLot:
     
     
     # Returns the difference of totalSpots in parking lot and available spots
-    def countAvailableSpots(self):
-        spotsTaken = 0
-        col = list(self.collection.find())
+    # def countAvailableSpots(self):
+    #     spotsTaken = 0
+    #     col = list(self.collection.find())
 
-        for document in col:
-            if document["isVacant"] == False:
-                spotsTaken += 1
+    #     for document in col:
+    #         if document["isVacant"] == False:
+    #             spotsTaken += 1
         
-        return self.totalSpots - spotsTaken
+    #     return self.totalSpots - spotsTaken
+
+    def countAvailableSpots(self):
+        availableSpots = 0
+        listSensors = list(self.collection.find())
+
+        for sensor in listSensors:
+            if sensor["isVacant"] == True:
+                availableSpots += 1
+        
+        return availableSpots
     
     
     # Create a sensor for parking lot with echo and trigger as params
