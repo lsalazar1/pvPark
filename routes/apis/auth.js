@@ -26,7 +26,7 @@ router.get('/', auth, async (req, res) => {
 router.post(
     '/',
     [
-        check('email', 'Please use your PV Email').contains('pvamu.edu'),
+        check('username', 'Please enter your username').exists(),
         check('password', 'Password is required').exists()
     ],
     async (req, res) => {
@@ -38,11 +38,11 @@ router.post(
         }
 
         // Destructure body of req to get email and pass...
-        const { email, password } = req.body;
+        const { username , password } = req.body;
 
         try {
             // Sees if user exists...
-            let user = await User.findOne({ email })
+            let user = await User.findOne({ username })
 
             if (!user) {
                 return res.status(400).json({ errors: [{ msg: 'Invalid credentials'}] });
