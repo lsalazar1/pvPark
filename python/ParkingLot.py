@@ -13,6 +13,7 @@ class ParkingLot:
     def __init__(self, lotName, totalSpots):
         self.lotName = lotName
         self.totalSpots = totalSpots
+        self.parkingDataCollectionName = self.lotName + 'data'
 
         # Connect to mongodb using connection string
         self.connection = pymongo.MongoClient(getConnection())
@@ -22,23 +23,15 @@ class ParkingLot:
 
         # Create/Search for a collection with lot name
         self.collection = self.database[self.lotName]
+
+        self.parkingData = self.database[self.parkingDataCollectionName]
+        
     
     
     # Counts the number of sensors available to the parking lot's collection
     def countSensors(self):
         return self.collection.count()
     
-    
-    # Returns the difference of totalSpots in parking lot and available spots
-    # def countAvailableSpots(self):
-    #     spotsTaken = 0
-    #     col = list(self.collection.find())
-
-    #     for document in col:
-    #         if document["isVacant"] == False:
-    #             spotsTaken += 1
-        
-    #     return self.totalSpots - spotsTaken
 
     def countAvailableSpots(self):
         availableSpots = 0
@@ -50,52 +43,39 @@ class ParkingLot:
         
         return availableSpots
     
-    
+
     # Create a sensor for parking lot with echo and trigger as params
     def createUS(self, echo, trigger):
-        col = list(self.collection.find())
+        
+        # Each index in sensorsList will have this object per sensor
+        info = {
+            "_id": "",
+            "isVacant": False,
+            "sensorType": "US",
+            "echo": echo,
+            "trigger": trigger
+        }
 
-        for doc in col:
-            if (doc['echo'] == echo and doc['trigger'] == trigger):
-                sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance = 0.005)
+        sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance=0.005)
 
-                vacant = self.isVacant(sensor)
-            
-                sensor.close()
+        # Naming convention is first three chars of lot name and place in sensorsList
+        info["_id"] = self.lotName[:3] + str(self.countSensors())
+        print("Sensor %s is initializing" % info["_id"])
 
-                self.collection.update_one(
-                    doc, 
-                    {'$set' : {'isVacant' : vacant}}
-                )
-            else:
-                # Each index in sensorsList will have this object per sensor
-                info = {
-                    "_id": "",
-                    "isVacant": False,
-                    "sensorType": "US",
-                    "echo": echo,
-                    "trigger": trigger
-                }
+        # Alters info["isVacant"] value based on sensor's reading... use sensor as a param 
+        info["isVacant"] = self.isVacant(sensor)
 
-                sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance=0.005)
+        self.collection.insert_one(info)
+        sensor.close()
 
-                # Naming convention is first three chars of lot name and place in sensorsList
-                info["_id"] = self.lotName[:3] + str(self.countSensors())
-                print("Sensor %s is initializing" % info["_id"])
 
-                # Alters info["isVacant"] value based on sensor's reading... use sensor as a param 
-                info["isVacant"] = self.isVacant(sensor)
-
-                self.collection.insert_one(info)
-                sensor.close()
-    
-    
     # Checks if parking spot is vacant using sensor as param
     def isVacant(self, sensor):
         # Converts meters to cm        
         distance = sensor.distance
 
         return False if distance < 0.04 else True
+
 
     # Loop through each document in the lot's collection and track the changes within the spaces
     def run(self):
@@ -118,8 +98,29 @@ class ParkingLot:
         
         print("Total Parking Spaces in ", self.countAvailableSpots())
 
+
     # Drops parking lot's collection within Mongo when stopping the script via keyboard
     def killProgram(self):
+        self.snapshot()
+        
+        print('Killing program...')
         self.collection.drop()
-        print('Killing program')
+    
+
+    # "Snapshots" the state of a parking lot and pushes it to a seperate collection
+    def snapshot(self):
+        spots = self.countAvailableSpots()
+
+        data = {
+            "lotName" : self.lotName,
+            "availableSpots": spots
+        }
+
+        self.parkingData.insert_one(data)
+
+
+
+        
+    
+        
 
