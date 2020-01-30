@@ -13,6 +13,7 @@ class ParkingLot:
     def __init__(self, lotName, totalSpots):
         self.lotName = lotName
         self.totalSpots = totalSpots
+        self.parkingDataCollectionName = self.lotName + 'data'
 
         # Connect to mongodb using connection string
         self.connection = pymongo.MongoClient(getConnection())
@@ -22,6 +23,9 @@ class ParkingLot:
 
         # Create/Search for a collection with lot name
         self.collection = self.database[self.lotName]
+
+        self.parkingData = self.database[self.parkingDataCollectionName]
+        
     
     
     # Counts the number of sensors available to the parking lot's collection
@@ -39,6 +43,7 @@ class ParkingLot:
         
         return availableSpots
     
+
     # Create a sensor for parking lot with echo and trigger as params
     def createUS(self, echo, trigger):
         
@@ -96,10 +101,26 @@ class ParkingLot:
 
     # Drops parking lot's collection within Mongo when stopping the script via keyboard
     def killProgram(self):
+        self.snapshot()
+        
         print('Killing program...')
         self.collection.drop()
     
-    
+
+    # "Snapshots" the state of a parking lot and pushes it to a seperate collection
+    def snapshot(self):
+        spots = self.countAvailableSpots()
+
+        data = {
+            "lotName" : self.lotName,
+            "availableSpots": spots
+        }
+
+        self.parkingData.insert_one(data)
+
+
+
+        
     
         
 
