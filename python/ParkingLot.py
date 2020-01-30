@@ -3,6 +3,7 @@
 
 from gpiozero import DistanceSensor
 from config import getConnection
+from datetime import datetime
 from time import sleep
 
 import pymongo
@@ -110,8 +111,10 @@ class ParkingLot:
     # "Snapshots" the state of a parking lot and pushes it to a seperate collection
     def snapshot(self):
         spots = self.countAvailableSpots()
+        dateTime = datetime.now()
 
         data = {
+            "dateTime": dateTime,
             "lotName" : self.lotName,
             "availableSpots": spots
         }
