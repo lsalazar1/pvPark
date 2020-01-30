@@ -12,6 +12,7 @@ if __name__ == '__main__':
               while True:
                      print('\nChecking for changes in Parking Lot...')
                      SRC.run()
+                     SRC.snapshot()
                      sleep(10)
        except KeyboardInterrupt:
               SRC.killProgram()
