@@ -1,0 +1,22 @@
+[
+    {
+        "_id" : "src001",
+        "isVacant" : true
+    },
+    {
+        "_id" : "src002",
+        "isVacant" : true
+    }, 
+    {
+        "_id" : "src003",
+        "isVacant" : true
+    }, 
+    {
+        "_id" : "src004",
+        "isVacant" : true
+    },
+    {
+        "_id" : "src005",
+        "isVacant" : true
+    }
+]
