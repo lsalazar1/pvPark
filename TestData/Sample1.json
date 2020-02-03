@@ -1,27 +1,22 @@
 [
-
     {
         "_id" : "src001",
         "isVacant" : false
-    }
-    ,
+    },
     {
         "_id" : "src002",
         "isVacant" : false
-    }
-    , {
+    }, 
+    {
         "_id" : "src003",
         "isVacant" : false
-    }
-    , {
+    }, 
+    {
         "_id" : "src004",
         "isVacant" : false
-    }
-    , {
+    },
+    {
         "_id" : "src005",
         "isVacant" : false
     }
-    
-
-
 ]
