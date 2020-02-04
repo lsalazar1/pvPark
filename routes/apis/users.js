@@ -19,11 +19,13 @@ router.post(
         check('password', 'Please enter a password with 8 or more characters')
             .isLength({ min: 8 }),
         check('username', 'Username needs to have more than 4 characters')
-            .isLength({ min: 5 })    
+            .isLength({ min: 4 })    
     ],
     async (req, res) => {
         const errors = validationResult(req);
 
+        console.log('Test');
+        console.log(req.query);
         // If there are any errors found by validationResult in user's HTTP request, we'll return an HTTP status code 400
         // with an array of errors found
         if (!errors.isEmpty()) {

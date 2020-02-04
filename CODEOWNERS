@@ -6,4 +6,6 @@
 
 *.js    @lsalazar1
 
+*.swift @gazie91
+
 python/ @lsalazar1
