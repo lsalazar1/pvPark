@@ -7,8 +7,8 @@ const SrCollins = require('../../models/SrCollins');
 // @route       api/srcollins
 // @desc        GET SR Collins JSON
 // @access      PRIVATE
-router.get('/', async (req, res) => {
-    try{
+router.get('/', auth, async (req, res) => {
+    try {
         let lot = await SrCollins.findOne();
         res.send(lot);
     } catch (err) {
