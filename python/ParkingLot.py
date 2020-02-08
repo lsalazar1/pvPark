@@ -57,21 +57,21 @@ class ParkingLot:
             'trigger': trigger
         }
 
-        #sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance=0.005)
+        sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance=0.005)
 
         # Naming convention is first three chars of lot name and place in sensorsList
         info['_id'] = self.lotName[:3] + str(self.countSensors())
         print('Sensor %s is initializing' % info['_id'])
 
         # Alters info['isVacant'] value based on sensor's reading... use sensor as a param 
-        # info['isVacant'] = self.isVacant(sensor)
+        info['isVacant'] = self.isVacant(sensor)
 
         self.collection.update_one(
             { 'lotName': 'srcollins' },
             { '$push': { 'sensors': info } }
         )
         
-        # sensor.close()
+        sensor.close()
 
 
     # Checks if parking spot is vacant using sensor as param
