@@ -1,0 +1,10 @@
+{
+    "lotName": "testLot",
+    "sensors" : [
+        { "_id" : "TES01", "isVacant" : true },
+        { "_id" : "TES02", "isVacant" : true },
+        { "_id" : "TES03", "isVacant" : false },
+        { "_id" : "TES04", "isVacant" : false },
+        { "_id" : "TES05", "isVacant" : true }
+    ]
+}
