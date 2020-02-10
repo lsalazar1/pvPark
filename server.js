@@ -19,6 +19,7 @@ app.get('/', (req, res) => res.send('API Test'));
 // Defines different routes
 app.use('/api/users', require('./routes/apis/users'));
 app.use('/api/auth', require('./routes/apis/auth'));
+app.use('/api/srcollins', require('./routes/apis/srcollins'));
 
 // Activate express on port decalred... 
 app.listen(PORT, () => console.log(`Server active on Port ${PORT}`));
