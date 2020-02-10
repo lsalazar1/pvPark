@@ -60,7 +60,7 @@ class ParkingLot:
 
         # Naming convention is first three chars of lot name and place in sensorsList
         info['_id'] = self.lotName[:3] + str(self.countSensors())
-        print(f'Sensor {info['_id']} is initializing' )
+        print('Sensor  %s is initializing' % info['_id'])
 
         # Alters info['isVacant'] value based on sensor's reading... use sensor as a param 
         info['isVacant'] = self.isVacant(sensor)
@@ -103,13 +103,17 @@ class ParkingLot:
 
     # Drops parking lot's collection within Mongo when stopping the script via keyboard
     def killProgram(self):
+        listSensors = self.collection.find_one()['sensors']
         #self.snapshot()
         print('Killing program...')
+
+        for sensor in listSensors:
+            self.collection.update_one(
+                {'lotName': self.lotName},
+                {'$set': {'sensors': []} }
+            )
         
-        self.collection.update_one(
-            { 'lotName': self.lotName },
-            { '$set': { 'sensors': [] } }
-        )
+
     
 
     # 'Snapshots' the state of a parking lot and pushes it to a seperate database
@@ -123,4 +127,10 @@ class ParkingLot:
             'availableSpots': spots
         }
 
-        self.parkingData.insert_one(data)        
+        self.parkingData.insert_one(data)
+
+    def test(self):
+        print(self.collection.find_one({'lotName' : self.lotName}))
+
+x = ParkingLot('SR Collins', 168)
+x.killProgram()
