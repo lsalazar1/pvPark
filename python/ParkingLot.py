@@ -86,17 +86,18 @@ class ParkingLot:
         for sensor in listSensors:
             echo = sensor['echo']
             trigger = sensor['trigger']
+            sid = sensor['_id']
             
-            #sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance = 0.005)
+            sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance = 0.005)
 
-            vacant = True #self.isVacant(sensor)
-            
-            #sensor.close()
+            vacant = self.isVacant(sensor)
 
             self.collection.update_one(
-                {'lotName': self.lotName, 'sensors.isVacant': sensor['isVacant'], 'sensors._id': sensor['_id']}, 
+                {'lotName': self.lotName, 'sensors._id': sid },
                 {'$set' : { 'sensors.$.isVacant' : vacant }}
             )
+            
+            sensor.close()
 
         print('Total Parking Spaces in ', self.countAvailableSpots())
 
@@ -114,8 +115,6 @@ class ParkingLot:
             )
         
 
-    
-
     # 'Snapshots' the state of a parking lot and pushes it to a seperate database
     def snapshot(self):
         spots = self.countAvailableSpots()
@@ -128,9 +127,3 @@ class ParkingLot:
         }
 
         self.parkingData.insert_one(data)
-
-    def test(self):
-        print(self.collection.find_one({'lotName' : self.lotName}))
-
-x = ParkingLot('SR Collins', 168)
-x.killProgram()
