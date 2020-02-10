@@ -23,9 +23,7 @@ router.post(
     ],
     async (req, res) => {
         const errors = validationResult(req);
-
-        console.log('Test');
-        console.log(req.query);
+        
         // If there are any errors found by validationResult in user's HTTP request, we'll return an HTTP status code 400
         // with an array of errors found
         if (!errors.isEmpty()) {
@@ -60,7 +58,7 @@ router.post(
             // Save onto database
             await user.save();
 
-            res.send('User registered');
+            res.send({'msg': 'User registered!'});
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Error');
