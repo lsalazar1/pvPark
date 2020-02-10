@@ -29,7 +29,6 @@ class ParkingLot:
         self.parkingData = self.database2[self.parkingDataCollectionName]
         
     
-    
     # Counts the number of sensors available to the parking lot's collection
     def countSensors(self):
         return len(self.collection.find_one()['sensors'])
@@ -61,7 +60,7 @@ class ParkingLot:
 
         # Naming convention is first three chars of lot name and place in sensorsList
         info['_id'] = self.lotName[:3] + str(self.countSensors())
-        print('Sensor %s is initializing' % info['_id'])
+        print(f'Sensor {info['_id']} is initializing' )
 
         # Alters info['isVacant'] value based on sensor's reading... use sensor as a param 
         info['isVacant'] = self.isVacant(sensor)
