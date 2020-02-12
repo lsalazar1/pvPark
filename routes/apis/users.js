@@ -17,11 +17,13 @@ router.post(
         check('email', 'Please use your PV email')
             .contains('pvamu.edu'),
         check('password', 'Please enter a password with 8 or more characters')
-            .isLength({ min: 8 })    
+            .isLength({ min: 8 }),
+        check('username', 'Username needs to have more than 4 characters')
+            .isLength({ min: 4 })    
     ],
     async (req, res) => {
         const errors = validationResult(req);
-
+        
         // If there are any errors found by validationResult in user's HTTP request, we'll return an HTTP status code 400
         // with an array of errors found
         if (!errors.isEmpty()) {
@@ -29,7 +31,7 @@ router.post(
         }
 
         // Destruct the body of the request and get these values
-        const { name, email, password } = req.body;
+        const { name, email, password, username } = req.body;
 
         try {
             // Using the user's email value in the request's body, find if it exists in the database... Returns a query
@@ -44,7 +46,8 @@ router.post(
             user = new User({
                 name,
                 email,
-                password
+                password,
+                username
             });
 
             const salt = await bcrypt.genSalt(10);
@@ -55,7 +58,7 @@ router.post(
             // Save onto database
             await user.save();
 
-            res.send('User registered');
+            res.send({'msg': 'User registered!'});
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Error');
