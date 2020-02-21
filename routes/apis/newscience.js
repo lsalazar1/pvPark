@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+// Bring this in later
 const auth = require('../../middleware/auth');
 const NewScience = require('../../models/NewScience');
 
