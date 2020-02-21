@@ -127,6 +127,3 @@ class ParkingLot:
         }
 
         self.parkingData.insert_one(data)
-
-# Testing
-print('Hello')
