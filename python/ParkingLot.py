@@ -66,7 +66,7 @@ class ParkingLot:
         info['isVacant'] = self.isVacant(sensor)
 
         self.collection.update_one(
-            { 'lotName': 'srcollins' },
+            { 'lotName': self.lotName },
             { '$push': { 'sensors': info } }
         )
         
