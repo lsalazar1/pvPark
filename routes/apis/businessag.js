@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const BusinessAG = require("../../models/BusinessAG")
+const BusinessAG = require("../../models/BusinessAG");
 
 let data = {
     'lotName': 'businessag',
@@ -47,7 +47,7 @@ let data = {
             'isVacant': true
         },
     ]
-}
+};
 
 router.get("/", async (req, res) => {
     //de-structuring
@@ -65,6 +65,6 @@ router.get("/", async (req, res) => {
     } catch (error) {
         res.status(500).json({"msg": "error 500"})
     }
-})
+});
 
-module.exports = router
+module.exports = router;
