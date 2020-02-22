@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
-    "test": "node test",
-    "stop": "npm run exit"
+    "test": "node test"
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,6 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
-    "concurrently": "^5.1.0",
     "config": "^3.2.4",
     "express": "^4.17.1",
     "express-validator": "^6.2.0",
