@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "test": "node test",
+    "stop": "npm run exit"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,9 @@
   },
   "homepage": "https://github.com/rouoba/pvPark#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^5.1.0",
     "config": "^3.2.4",
     "express": "^4.17.1",
     "express-validator": "^6.2.0",
@@ -28,7 +32,6 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
-    "concurrently": "^5.0.0",
     "nodemon": "^1.19.4"
   }
 }
