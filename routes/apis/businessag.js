@@ -51,19 +51,19 @@ let data = {
 
 router.get("/", async (req, res) => {
     //de-structuring
-    let {lotName, sensors} = data
+    let {lotName, sensors} = data;
     
-    let lot = await BusinessAG.findOne()
+    let lot = await BusinessAG.findOne();
     if (!lot) {
-        let newLot = new BusinessAG({lotName, sensors})
-        await newLot.save()
+        let newLot = new BusinessAG({lotName, sensors});
+        await newLot.save();
     }
 
     try {
-        lot = await BusinessAG.findOne()
-        res.send(lot)
+        lot = await BusinessAG.findOne();
+        res.send(lot);
     } catch (error) {
-        res.status(500).json({"msg": "error 500"})
+        res.status(500).json({"msg": "error 500"});
     }
 });
 
