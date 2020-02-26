@@ -126,6 +126,46 @@ let data = {
             '_id': 'msc29',
             'isVacant': false
         },
+        {
+            '_id': 'msc30',
+            'isVacant': true
+        },
+        {
+            '_id': 'msc31',
+            'isVacant': true
+        },
+        {
+            '_id': 'msc32',
+            'isVacant': true
+        },
+        {
+            '_id': 'msc33',
+            'isVacant': false
+        },
+        {
+            '_id': 'msc34',
+            'isVacant': true
+        },
+        {
+            '_id': 'msc35',
+            'isVacant': false
+        },
+        {
+            '_id': 'msc36',
+            'isVacant': false
+        },
+        {
+            '_id': 'msc37',
+            'isVacant': false
+        },
+        {
+            '_id': 'msc38',
+            'isVacant': true
+        },
+        {
+            '_id': 'msc39',
+            'isVacant': false
+        },
     ]
 }
 
