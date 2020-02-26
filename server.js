@@ -23,6 +23,7 @@ app.use('/api/srcollins', require('./routes/apis/srcollins'));
 app.use('/api/newscience', require('./routes/apis/newscience'));
 app.use('/api/businessag', require('./routes/apis/businessag'));
 app.use('/api/msc', require('./routes/apis/msc'));
+app.use('/api/rasp', require('./routes/apis/rasp'));
 
 // Activate express on port decalred... 
 app.listen(PORT, () => console.log(`Server active on Port ${PORT}`));
