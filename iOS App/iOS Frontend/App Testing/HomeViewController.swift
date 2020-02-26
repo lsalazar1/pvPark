@@ -121,5 +121,10 @@ class HomeViewController: UIViewController {
     @IBAction func closeMoreInfoButton3(_ sender: Any) {
         moreInfoOutlet3.isHidden = true
     }
+    @IBAction func mscMoreInfoButton(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mscViewController = storyBoard.instantiateViewController(withIdentifier: "mscView") as! MSCViewController
+        self.present(mscViewController, animated: true, completion: nil)
+    }
     
 }
