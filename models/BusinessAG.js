@@ -1,4 +1,5 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+
 const BusinessAGSchema = new mongoose.Schema({
     lotName: {
         default: "Business AG",
@@ -7,6 +8,6 @@ const BusinessAGSchema = new mongoose.Schema({
     sensors: [
         { _id: String , isVacant: Boolean }
     ]
-})
+});
 
-module.exports = Businessag = mongoose.model("businessag", BusinessAGSchema)
+module.exports = Businessag = mongoose.model("businessag", BusinessAGSchema);
