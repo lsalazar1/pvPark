@@ -26,6 +26,11 @@
 		2EEF8A3E23E9DF5000ED0E05 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EEF8A3B23E9DF5000ED0E05 /* red.png */; };
 		2EEF8A3F23E9DF5000ED0E05 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EEF8A3C23E9DF5000ED0E05 /* green.png */; };
 		2EEF8A4123E9E02C00ED0E05 /* hollow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EEF8A4023E9E02C00ED0E05 /* hollow.png */; };
+		97CF0ECA2406E77F0043402E /* MSCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CF0EC92406E77E0043402E /* MSCViewController.swift */; };
+		97CF0ECE2406FA010043402E /* groundTextureMSC.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 97CF0ECD2406FA000043402E /* groundTextureMSC.jpg */; };
+		E4491F502407298C00E02EC2 /* mscQuad1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4491F4F2407298C00E02EC2 /* mscQuad1ViewController.swift */; };
+		E4491F52240729BA00E02EC2 /* mscQuad2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4491F51240729BA00E02EC2 /* mscQuad2ViewController.swift */; };
+		E4491F54240729E700E02EC2 /* mscQuad3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4491F53240729E700E02EC2 /* mscQuad3ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +55,11 @@
 		2EEF8A3B23E9DF5000ED0E05 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = SOURCE_ROOT; };
 		2EEF8A3C23E9DF5000ED0E05 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = SOURCE_ROOT; };
 		2EEF8A4023E9E02C00ED0E05 /* hollow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hollow.png; sourceTree = SOURCE_ROOT; };
+		97CF0EC92406E77E0043402E /* MSCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSCViewController.swift; sourceTree = "<group>"; };
+		97CF0ECD2406FA000043402E /* groundTextureMSC.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = groundTextureMSC.jpg; sourceTree = "<group>"; };
+		E4491F4F2407298C00E02EC2 /* mscQuad1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mscQuad1ViewController.swift; sourceTree = "<group>"; };
+		E4491F51240729BA00E02EC2 /* mscQuad2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mscQuad2ViewController.swift; sourceTree = "<group>"; };
+		E4491F53240729E700E02EC2 /* mscQuad3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mscQuad3ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +98,10 @@
 				2E2A6FF623E0ADA2001BB65F /* ViewController.swift */,
 				2EA45A1823EB52BE009AF0EE /* TestLotViewController.swift */,
 				2E0895BC23E213E20035A1CA /* HomeViewController.swift */,
+				97CF0EC92406E77E0043402E /* MSCViewController.swift */,
+				E4491F4F2407298C00E02EC2 /* mscQuad1ViewController.swift */,
+				E4491F51240729BA00E02EC2 /* mscQuad2ViewController.swift */,
+				E4491F53240729E700E02EC2 /* mscQuad3ViewController.swift */,
 				2E2A6FFB23E0ADA2001BB65F /* Assets.xcassets */,
 				2E2A6FFD23E0ADA2001BB65F /* LaunchScreen.storyboard */,
 				2E2A700023E0ADA2001BB65F /* Info.plist */,
@@ -105,6 +119,7 @@
 				2EE404AA23F3255D00051C5A /* open.png */,
 				2EEF8A3C23E9DF5000ED0E05 /* green.png */,
 				2EEF8A4023E9E02C00ED0E05 /* hollow.png */,
+				97CF0ECD2406FA000043402E /* groundTextureMSC.jpg */,
 				2EEF8A3B23E9DF5000ED0E05 /* red.png */,
 				2E6AF67C23F32005001985D5 /* ground texture.png */,
 				2EA45A1E23EB6F0D009AF0EE /* car.png */,
@@ -177,6 +192,7 @@
 				2EA45A2323EB716C009AF0EE /* car straight.png in Resources */,
 				2EEF8A3F23E9DF5000ED0E05 /* green.png in Resources */,
 				2E2A700923E0AE5E001BB65F /* Button.png in Resources */,
+				97CF0ECE2406FA010043402E /* groundTextureMSC.jpg in Resources */,
 				2EA45A2123EB6F77009AF0EE /* car flipped.png in Resources */,
 				2E2A700A23E0AE5E001BB65F /* Background.mov in Resources */,
 				2EEF8A3E23E9DF5000ED0E05 /* red.png in Resources */,
@@ -196,10 +212,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4491F502407298C00E02EC2 /* mscQuad1ViewController.swift in Sources */,
+				97CF0ECA2406E77F0043402E /* MSCViewController.swift in Sources */,
 				2E2A6FF723E0ADA2001BB65F /* ViewController.swift in Sources */,
 				2E2A6FF323E0ADA2001BB65F /* AppDelegate.swift in Sources */,
 				2EA45A1923EB52BE009AF0EE /* TestLotViewController.swift in Sources */,
 				2E2A6FF523E0ADA2001BB65F /* SceneDelegate.swift in Sources */,
+				E4491F52240729BA00E02EC2 /* mscQuad2ViewController.swift in Sources */,
+				E4491F54240729E700E02EC2 /* mscQuad3ViewController.swift in Sources */,
 				2E0895BD23E213E20035A1CA /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,16 +365,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 75C259SJ4Y;
+				DEVELOPMENT_TEAM = ZK55645TY9;
 				INFOPLIST_FILE = "App Testing/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "pvPark.App-Testing";
+				PRODUCT_BUNDLE_IDENTIFIER = pvPark.AppTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -363,16 +384,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 75C259SJ4Y;
+				DEVELOPMENT_TEAM = ZK55645TY9;
 				INFOPLIST_FILE = "App Testing/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "pvPark.App-Testing";
+				PRODUCT_BUNDLE_IDENTIFIER = pvPark.AppTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
