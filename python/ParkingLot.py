@@ -47,7 +47,7 @@ class ParkingLot:
         print('Sensor  %s is initializing' % info['_id'])
 
         # Alters info['isVacant'] value based on sensor's reading... use sensor as a param 
-        info['isVacant'] = False if sensor.distance < 0.004 else True
+        # info['isVacant'] = False if sensor.distance < 0.004 else True
 
         self.collection.update_one(
             { 'lotName': self.lotName },
@@ -66,8 +66,8 @@ class ParkingLot:
             trigger = sensor['trigger']
             sid = sensor['_id']
             
-            sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance = 0.005)
-            vacant = False if sensor.distance < 0.04 else True
+            sensorClass = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.06, threshold_distance = 0.005)
+            vacant = False if sensorClass.distance < 0.0254 else True
 
             if vacant == True:
                 availableSpots += 1 
@@ -77,7 +77,7 @@ class ParkingLot:
                 {'$set' : { 'sensors.$.isVacant' : vacant }}
             )
             
-            sensor.close()
+            sensorClass.close()
 
         self.collection.update_one(
             {'lotName': self.lotName},
@@ -89,7 +89,6 @@ class ParkingLot:
 
     # Drops parking lot's collection within Mongo when stopping the script via keyboard
     def killProgram(self):
-        #self.snapshot()
         print('Killing program...')
 
         self.collection.update_one(
