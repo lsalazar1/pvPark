@@ -99,7 +99,7 @@ class ParkingLot:
             
             sensor.close()
 
-        print('Total Parking Spaces in ', self.countAvailableSpots())
+        print('Total available spaces in lot is: ', self.countAvailableSpots())
 
 
     # Drops parking lot's collection within Mongo when stopping the script via keyboard
@@ -128,4 +128,6 @@ class ParkingLot:
 
         self.parkingData.insert_one(data)
 
-x = ParkingLot("Raspberry", 40)
+  
+            
+
