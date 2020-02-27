@@ -18,6 +18,8 @@ class MSCViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Background video
         func playBackgroundVideo() {
             if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
                 let filePathUrl = NSURL.fileURL(withPath: filePath)
@@ -36,4 +38,5 @@ class MSCViewController: UIViewController {
         playBackgroundVideo()
     }
     
-}
+    
+    }

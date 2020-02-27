@@ -655,13 +655,50 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IDH-Jc-XKH" userLabel="quad1View">
+                                <rect key="frame" x="8" y="10" width="398" height="448"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memorial Student Center Quad1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-k5-tkE">
+                                        <rect key="frame" x="60" y="10" width="278" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="duV-Mj-nkh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="groundQuad1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="AkC-N4-liV" userLabel="quad1ImageView">
+                                        <rect key="frame" x="8" y="90" width="382" height="281"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="281" id="FjH-qt-Jyv"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="amC-ju-5h9">
+                                        <rect key="frame" x="66" y="112" width="24" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="AkC-N4-liV" firstAttribute="leading" secondItem="IDH-Jc-XKH" secondAttribute="leading" constant="8" id="1Gk-00-t8y"/>
+                                    <constraint firstItem="R3Y-k5-tkE" firstAttribute="top" secondItem="IDH-Jc-XKH" secondAttribute="top" constant="10" id="Gbx-Ax-LRP"/>
+                                    <constraint firstAttribute="trailing" secondItem="R3Y-k5-tkE" secondAttribute="trailing" constant="60" id="HS8-yL-lUB"/>
+                                    <constraint firstItem="AkC-N4-liV" firstAttribute="top" secondItem="R3Y-k5-tkE" secondAttribute="bottom" constant="50" id="SsS-lw-MfW"/>
+                                    <constraint firstItem="R3Y-k5-tkE" firstAttribute="leading" secondItem="IDH-Jc-XKH" secondAttribute="leading" constant="60" id="dJl-Cd-PH8"/>
+                                    <constraint firstAttribute="height" constant="448" id="wp4-db-GAS"/>
+                                    <constraint firstAttribute="trailing" secondItem="AkC-N4-liV" secondAttribute="trailing" constant="8" id="zbU-Bt-KiX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="WZh-y0-cny" firstAttribute="trailing" secondItem="iMR-z7-Mr6" secondAttribute="trailing" id="530-DE-3h6"/>
                             <constraint firstItem="WZh-y0-cny" firstAttribute="top" secondItem="iMR-z7-Mr6" secondAttribute="top" id="74f-3L-2Xg"/>
                             <constraint firstAttribute="bottom" secondItem="WZh-y0-cny" secondAttribute="bottom" id="BHl-GO-kRj"/>
+                            <constraint firstItem="iMR-z7-Mr6" firstAttribute="trailing" secondItem="IDH-Jc-XKH" secondAttribute="trailing" constant="8" id="Xgk-ch-gou"/>
                             <constraint firstItem="WZh-y0-cny" firstAttribute="leading" secondItem="iMR-z7-Mr6" secondAttribute="leading" id="gOc-QH-Cga"/>
+                            <constraint firstItem="IDH-Jc-XKH" firstAttribute="leading" secondItem="iMR-z7-Mr6" secondAttribute="leading" constant="8" id="mbH-UC-P96"/>
+                            <constraint firstItem="IDH-Jc-XKH" firstAttribute="top" secondItem="iMR-z7-Mr6" secondAttribute="top" constant="10" id="rPJ-WW-09x"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iMR-z7-Mr6"/>
                     </view>
@@ -672,7 +709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dza-cF-KFk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3200" y="842"/>
+            <point key="canvasLocation" x="3200.0000000000005" y="841.74107142857144"/>
         </scene>
         <!--Msc Quad2 View Controller-->
         <scene sceneID="gHv-5i-41K">
@@ -729,6 +766,7 @@
         <image name="car straight.png" width="253" height="512"/>
         <image name="car.png" width="512" height="253"/>
         <image name="ground texture.png" width="469.5" height="312.75"/>
+        <image name="groundQuad1.jpg" width="159.83999633789062" height="127.19999694824219"/>
         <image name="groundTextureMSC.jpg" width="271.5" height="198.75"/>
         <image name="hollow.png" width="100" height="100"/>
         <image name="settings.png" width="36" height="36"/>

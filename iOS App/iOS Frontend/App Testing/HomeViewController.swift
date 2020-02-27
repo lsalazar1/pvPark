@@ -55,6 +55,60 @@ class HomeViewController: UIViewController {
                 }
                 playBackgroundVideo()
         
+        //Fetch jSon object for lots from database
+        //read data from jSon through quads view controller
+        let urlStringMSC = "https://blooming-mountain-10766.herokuapp.com/api/msc"
+        let urlMSC = URL(string: urlStringMSC)
+               guard urlMSC != nil else {
+                   return
+               }
+        let sessionMSC = URLSession.shared
+        let dataTaskMSC = sessionMSC.dataTask(with: urlMSC!) { (data, response, error) in
+            //Check for error
+            if error == nil && data != nil {
+                //Parse json
+                let decoder = JSONDecoder()
+            
+                do {
+                     //jSon object for the parking lot.
+                     let mscLot = try decoder.decode(lot.self, from: data!)
+                     //let nameSensor1: String = testLot.sensors.first?._id ?? ""
+                    
+                    //Display number of avilable spots
+                    var available: Int = 0
+                    for i in 0...mscLot.sensors.count-1 {
+                        if mscLot.sensors[i].isVacant == true {
+                            available += 1
+                            //Network task executed in background
+                            //But UITextfield can only display string which is processed in main thread
+                            DispatchQueue.main.async {  //force network process into main thread
+//                                self.availableOutlet.text = String(available)
+//                                 if available == 0{    //lot full
+//                                     self.color = UIImage(named: "red_circle")!
+//                                     self.circleImage.image = self.color
+//                                 }
+//                                 else if (available > 0 && available <= 5){
+//                                     self.color = UIImage(named: "green_circle")!
+//                                     self.circleImage.image = self.color
+//                                 }
+//                                 else{    //in case calculation of available spots goes wrong (for ex. returns a negative number)
+//                                     self.color = UIImage(named: "hollow_red_circle")!
+//                                     self.circleImage.image = self.color
+//                                 }
+                            }
+                         }
+                    }
+                 
+                }
+                catch {
+                    print("Parsing error")
+                }
+            }
+        }
+        //Make the API call
+        dataTaskMSC.resume()
+            
+        
         //lot status outlet initialization
         if availableSpots == 0{    //lot full
             color = UIImage(named: "red")!
@@ -79,7 +133,7 @@ class HomeViewController: UIViewController {
         moreInfoOutlet.isHidden = true
         moreInfoOutlet2.isHidden = true
         moreInfoOutlet3.isHidden = true
-            }
+    }
     
     @IBAction func logOutButton(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

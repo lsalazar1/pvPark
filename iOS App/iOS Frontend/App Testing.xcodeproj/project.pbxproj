@@ -32,6 +32,9 @@
 		E4491F502407298C00E02EC2 /* mscQuad1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4491F4F2407298C00E02EC2 /* mscQuad1ViewController.swift */; };
 		E4491F52240729BA00E02EC2 /* mscQuad2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4491F51240729BA00E02EC2 /* mscQuad2ViewController.swift */; };
 		E4491F54240729E700E02EC2 /* mscQuad3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4491F53240729E700E02EC2 /* mscQuad3ViewController.swift */; };
+		E457EB922408789100D1D27F /* lot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457EB912408789100D1D27F /* lot.swift */; };
+		E457EB94240878AA00D1D27F /* sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457EB93240878AA00D1D27F /* sensor.swift */; };
+		E457EB96240887B400D1D27F /* groundQuad1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E457EB95240887B400D1D27F /* groundQuad1.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		E4491F4F2407298C00E02EC2 /* mscQuad1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mscQuad1ViewController.swift; sourceTree = "<group>"; };
 		E4491F51240729BA00E02EC2 /* mscQuad2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mscQuad2ViewController.swift; sourceTree = "<group>"; };
 		E4491F53240729E700E02EC2 /* mscQuad3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mscQuad3ViewController.swift; sourceTree = "<group>"; };
+		E457EB912408789100D1D27F /* lot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lot.swift; sourceTree = "<group>"; };
+		E457EB93240878AA00D1D27F /* sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sensor.swift; sourceTree = "<group>"; };
+		E457EB95240887B400D1D27F /* groundQuad1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = groundQuad1.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,8 @@
 				2E2A6FFD23E0ADA2001BB65F /* LaunchScreen.storyboard */,
 				2E2A700023E0ADA2001BB65F /* Info.plist */,
 				2E2A700823E0AE5E001BB65F /* Background.mov */,
+				E457EB912408789100D1D27F /* lot.swift */,
+				E457EB93240878AA00D1D27F /* sensor.swift */,
 				2E2A700623E0AE3C001BB65F /* Media */,
 			);
 			path = "App Testing";
@@ -119,6 +127,7 @@
 			children = (
 				2E2A700723E0AE5E001BB65F /* Button.png */,
 				2EA45A1623EB4FB7009AF0EE /* settings.png */,
+				E457EB95240887B400D1D27F /* groundQuad1.jpg */,
 				2EE404AA23F3255D00051C5A /* open.png */,
 				2EEF8A3C23E9DF5000ED0E05 /* green.png */,
 				E448911D240743A900C80F7C /* groundTextureMSC.jpg */,
@@ -199,6 +208,7 @@
 				2EA45A2123EB6F77009AF0EE /* car flipped.png in Resources */,
 				2E2A700A23E0AE5E001BB65F /* Background.mov in Resources */,
 				2EEF8A3E23E9DF5000ED0E05 /* red.png in Resources */,
+				E457EB96240887B400D1D27F /* groundQuad1.jpg in Resources */,
 				2E2A6FFC23E0ADA2001BB65F /* Assets.xcassets in Resources */,
 				2EA45A1723EB4FB7009AF0EE /* settings.png in Resources */,
 				2EE404AB23F3255D00051C5A /* open.png in Resources */,
@@ -220,8 +230,10 @@
 				2E2A6FF723E0ADA2001BB65F /* ViewController.swift in Sources */,
 				2E2A6FF323E0ADA2001BB65F /* AppDelegate.swift in Sources */,
 				2EA45A1923EB52BE009AF0EE /* TestLotViewController.swift in Sources */,
+				E457EB94240878AA00D1D27F /* sensor.swift in Sources */,
 				2E2A6FF523E0ADA2001BB65F /* SceneDelegate.swift in Sources */,
 				E4491F52240729BA00E02EC2 /* mscQuad2ViewController.swift in Sources */,
+				E457EB922408789100D1D27F /* lot.swift in Sources */,
 				E4491F54240729E700E02EC2 /* mscQuad3ViewController.swift in Sources */,
 				E44891202407485900C80F7C /* mscQuad4ViewController.swift in Sources */,
 				2E0895BD23E213E20035A1CA /* HomeViewController.swift in Sources */,

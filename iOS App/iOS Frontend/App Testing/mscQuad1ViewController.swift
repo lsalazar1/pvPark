@@ -34,6 +34,30 @@ class mscQuad1ViewController: UIViewController {
             }
             playBackgroundVideo()
         }
-        
+       
+    //read jSon from MSC view controller and display state of quad1
+//    tsVacant.append(true)
+//    tsVacant.append(true)
+//    tsVacant.append(true)
+//    tsVacant.append(false)
+//    tsVacant.append(true)
+//    tsVacant.append(true)
+//    tsVacant.append(false)
+//    tsVacant.append(true)
+//    tsVacant.append(false)
+//    for i in 0...8{
+//        if tsVacant[i] == false{
+//            color = UIImage(named: "red_circle")!
+//            ts[i].image = color
+//        }
+//        else if (tsVacant[i] == true){
+//            color = UIImage(named: "green_circle")!
+//            ts[i].image = color
+//        }
+//        else{    //in case sensor is not working
+//
+//        }
+//    }
+    
     }
 
