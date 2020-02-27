@@ -7,7 +7,7 @@ if __name__ == '__main__':
        SRC.createUS(echo = 24, trigger = 23)    
        SRC.createUS(echo = 22, trigger = 27)
        SRC.createUS(echo = 13, trigger = 6)
-       SRC.createUS(echo = 3,trigger = 2)
+       SRC.createUS(echo = 5,trigger = 17)
 
        try:
               while True:
