@@ -58,7 +58,8 @@ let data = {
 // @access      PRIVATE
 router.get('/', async (req, res) => {
     try {
-        let lot = await SrCollins.findOne();
+        let lot = await Rasp.findOne();
+        console.log(lot)
         res.send(lot);
     } catch (err) {
         res.status(500).json({'msg' : 'Error 500'});
