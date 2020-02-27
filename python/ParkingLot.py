@@ -24,10 +24,6 @@ class ParkingLot:
         self.database = self.connection['test']
         self.collection = self.database[self.lotName]
         
-        # Create/Search for a database called data
-        self.database2 = self.connection['data']
-        self.parkingData = self.database2[self.parkingDataCollectionName]
-        
     
     # Counts the number of sensors available to the parking lot's collection
     def countSensors(self):
@@ -63,7 +59,7 @@ class ParkingLot:
         print('Sensor  %s is initializing' % info['_id'])
 
         # Alters info['isVacant'] value based on sensor's reading... use sensor as a param 
-        info['isVacant'] = self.isVacant(sensor)
+        info['isVacant'] = False if sensor.distance < 0.004 else True
 
         self.collection.update_one(
             { 'lotName': self.lotName },
@@ -72,16 +68,10 @@ class ParkingLot:
         
         sensor.close()
 
-
-    # Checks if parking spot is vacant using sensor as param
-    def isVacant(self, sensor):
-        distance = sensor.distance
-        return False if distance < 0.04 else True
-
-
     # Loop through each document in the lot's collection and track the changes within the spaces
     def run(self):
         listSensors = self.collection.find_one()['sensors']
+        availableSpots = 0
 
         for sensor in listSensors:
             echo = sensor['echo']
@@ -89,8 +79,10 @@ class ParkingLot:
             sid = sensor['_id']
             
             sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance = 0.005)
+            vacant = False if sensor.distance < 0.04 else True
 
-            vacant = self.isVacant(sensor)
+            if vacant == True:
+                availableSpots += 1 
 
             self.collection.update_one(
                 {'lotName': self.lotName, 'sensors._id': sid },
@@ -99,34 +91,23 @@ class ParkingLot:
             
             sensor.close()
 
-        print('Total available spaces in lot is: ', self.countAvailableSpots())
+        self.collection.update_one(
+            {'lotName': self.lotName},
+            {'$set': {'availableSpots' : availableSpots}}
+        )
+
+        print('Total available spaces in lot is: {}'.format(availableSpots))
 
 
     # Drops parking lot's collection within Mongo when stopping the script via keyboard
     def killProgram(self):
-        listSensors = self.collection.find_one()['sensors']
         #self.snapshot()
         print('Killing program...')
 
-        for sensor in listSensors:
-            self.collection.update_one(
-                {'lotName': self.lotName},
-                {'$set': {'sensors': []} }
-            )
-        
-
-    # 'Snapshots' the state of a parking lot and pushes it to a seperate database
-    def snapshot(self):
-        spots = self.countAvailableSpots()
-        dateTime = datetime.now()
-
-        data = {
-            'dateTime': dateTime,
-            'lotName' : self.lotName,
-            'availableSpots': spots
-        }
-
-        self.parkingData.insert_one(data)
+        self.collection.update_one(
+            {'lotName': self.lotName},
+            {'$set': {'sensors': [], 'availableSpots': 0} }
+        )
 
   
             
