@@ -28,18 +28,6 @@ class ParkingLot:
     # Counts the number of sensors available to the parking lot's collection
     def countSensors(self):
         return len(self.collection.find_one()['sensors'])
-    
-
-    def countAvailableSpots(self):
-        availableSpots = 0
-        listSensors = self.collection.find_one()['sensors']
-        
-        for sensor in listSensors:
-            if sensor['isVacant'] == True:
-                availableSpots += 1
-        
-        return availableSpots
-    
 
     # Create a sensor for parking lot with echo and trigger as params
     def createUS(self, echo, trigger):
