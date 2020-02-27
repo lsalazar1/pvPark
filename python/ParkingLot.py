@@ -60,13 +60,13 @@ class ParkingLot:
 
         # Naming convention is first three chars of lot name and place in sensorsList
         info['_id'] = self.lotName[:3] + str(self.countSensors())
-        print(f'Sensor {info['_id']} is initializing' )
+        print('Sensor  %s is initializing' % info['_id'])
 
         # Alters info['isVacant'] value based on sensor's reading... use sensor as a param 
         info['isVacant'] = self.isVacant(sensor)
 
         self.collection.update_one(
-            { 'lotName': 'srcollins' },
+            { 'lotName': self.lotName },
             { '$push': { 'sensors': info } }
         )
         
@@ -86,31 +86,34 @@ class ParkingLot:
         for sensor in listSensors:
             echo = sensor['echo']
             trigger = sensor['trigger']
+            sid = sensor['_id']
             
-            #sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance = 0.005)
+            sensor = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.05, threshold_distance = 0.005)
 
-            vacant = True #self.isVacant(sensor)
-            
-            #sensor.close()
+            vacant = self.isVacant(sensor)
 
             self.collection.update_one(
-                {'lotName': self.lotName, 'sensors.isVacant': sensor['isVacant'], 'sensors._id': sensor['_id']}, 
+                {'lotName': self.lotName, 'sensors._id': sid },
                 {'$set' : { 'sensors.$.isVacant' : vacant }}
             )
+            
+            sensor.close()
 
         print('Total Parking Spaces in ', self.countAvailableSpots())
 
 
     # Drops parking lot's collection within Mongo when stopping the script via keyboard
     def killProgram(self):
+        listSensors = self.collection.find_one()['sensors']
         #self.snapshot()
         print('Killing program...')
+
+        for sensor in listSensors:
+            self.collection.update_one(
+                {'lotName': self.lotName},
+                {'$set': {'sensors': []} }
+            )
         
-        self.collection.update_one(
-            { 'lotName': self.lotName },
-            { '$set': { 'sensors': [] } }
-        )
-    
 
     # 'Snapshots' the state of a parking lot and pushes it to a seperate database
     def snapshot(self):
@@ -123,4 +126,4 @@ class ParkingLot:
             'availableSpots': spots
         }
 
-        self.parkingData.insert_one(data)        
+        self.parkingData.insert_one(data)
