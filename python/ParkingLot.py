@@ -37,7 +37,7 @@ class ParkingLot:
     def countAvailableSpots(self):
         availableSpots = 0
         listSensors = self.collection.find_one()['sensors']
-
+        
         for sensor in listSensors:
             if sensor['isVacant'] == True:
                 availableSpots += 1
@@ -127,3 +127,5 @@ class ParkingLot:
         }
 
         self.parkingData.insert_one(data)
+
+x = ParkingLot("Raspberry", 40)
