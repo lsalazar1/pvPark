@@ -35,6 +35,7 @@
 		E457EB922408789100D1D27F /* lot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457EB912408789100D1D27F /* lot.swift */; };
 		E457EB94240878AA00D1D27F /* sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457EB93240878AA00D1D27F /* sensor.swift */; };
 		E457EB96240887B400D1D27F /* groundQuad1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E457EB95240887B400D1D27F /* groundQuad1.jpg */; };
+		E457EB982408CF7C00D1D27F /* car straight.png in Resources */ = {isa = PBXBuildFile; fileRef = E457EB972408CF7C00D1D27F /* car straight.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		E457EB912408789100D1D27F /* lot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lot.swift; sourceTree = "<group>"; };
 		E457EB93240878AA00D1D27F /* sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sensor.swift; sourceTree = "<group>"; };
 		E457EB95240887B400D1D27F /* groundQuad1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = groundQuad1.jpg; sourceTree = "<group>"; };
+		E457EB972408CF7C00D1D27F /* car straight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car straight.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				2E2A700823E0AE5E001BB65F /* Background.mov */,
 				E457EB912408789100D1D27F /* lot.swift */,
 				E457EB93240878AA00D1D27F /* sensor.swift */,
+				E457EB972408CF7C00D1D27F /* car straight.png */,
 				2E2A700623E0AE3C001BB65F /* Media */,
 			);
 			path = "App Testing";
@@ -205,6 +208,7 @@
 				2EEF8A3F23E9DF5000ED0E05 /* green.png in Resources */,
 				2E2A700923E0AE5E001BB65F /* Button.png in Resources */,
 				E448911E240743AA00C80F7C /* groundTextureMSC.jpg in Resources */,
+				E457EB982408CF7C00D1D27F /* car straight.png in Resources */,
 				2EA45A2123EB6F77009AF0EE /* car flipped.png in Resources */,
 				2E2A700A23E0AE5E001BB65F /* Background.mov in Resources */,
 				2EEF8A3E23E9DF5000ED0E05 /* red.png in Resources */,

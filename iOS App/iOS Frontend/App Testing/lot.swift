@@ -10,5 +10,6 @@ import Foundation
 
 struct lot: Codable {
     var lotName: String = ""
+    var availableSpots: Int = 0
     var sensors: [sensor]
 }

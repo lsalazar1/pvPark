@@ -16,9 +16,7 @@ class mscQuad1ViewController: UIViewController {
     
     @IBOutlet var qd1: [UIImageView]!
     
-    var tsVacant: [Bool] = []   //array that contains all the isVacant values from sensors
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,15 +35,17 @@ class mscQuad1ViewController: UIViewController {
                         do {
                             //jSon object for the parking lot.
                             let mscJson = try decoder.decode(lot.self, from: data!)
-                            
-                            for i in 0...mscJson.sensors.count-1 {
+//                            DispatchQueue.main.async {
+//                                var spot = UIImage(named: "car straight")!
+//                                self.qd1[0].image = spot
+//                            }
+                            var car = UIImage(named: "car straight")!
+                            for i in 0...34 {
                                 if mscJson.sensors[i].isVacant == true {
                                     //Network task executed in background
                                     //But UITextfield can only display string which is processed in main thread
                                     DispatchQueue.main.async {  //force network process into main thread
-                                        //spot = UIImage(named: "car flipped")!
-                                        //ts[i].image = spot
-                                        print(mscJson.sensors[i]._id)
+                                        self.qd1[i].image = car
                                     }
                                  }
                             }
@@ -57,23 +57,6 @@ class mscQuad1ViewController: UIViewController {
                 }
                 //Make the API call
                 dataTaskMSC.resume()
-        
-        
-                //    tsVacant.append(true)
-        //    tsVacant.append(true)
-        //    tsVacant.append(true)
-        //    tsVacant.append(false)
-        //    tsVacant.append(true)
-        //    tsVacant.append(true)
-        //    tsVacant.append(false)
-        //    tsVacant.append(true)
-        //    tsVacant.append(false)
-        //    for i in 0...34{
-        //        if tsVacant[i] == true{
-        //            spot = UIImage(named: "car flipped")!
-        //            ts[i].image = spot
-        //        }
-        //    }
             
         
         func playBackgroundVideo() {

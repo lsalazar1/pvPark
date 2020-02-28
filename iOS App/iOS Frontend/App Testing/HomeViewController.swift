@@ -71,22 +71,23 @@ class HomeViewController: UIViewController {
             
                 do {
                      //jSon object for the parking lot.
-                     let mscJson = try decoder.decode(lot.self, from: data!)
+                    let mscJson = try decoder.decode(lot.self, from: data!)
                      //let nameSensor1: String = testLot.sensors.first?._id ?? ""
                     
-                    //Display number of avilable spots
-                    var available: Int = 0
-                    for i in 0...mscJson.sensors.count-1 {
-                        if mscJson.sensors[i].isVacant == true {
-                            available += 1
-                            //Network task executed in background
-                            //But UITextfield can only display string which is processed in main thread
-                            DispatchQueue.main.async {  //force network process into main thread
-//                               get total number of available spots
-                            }
-                         }
-                    }
-                 
+                    //Display number of available spots
+                    print(mscJson.availableSpots)
+//                    for i in 0...mscJson.sensors.count-1 {
+//                        if mscJson.sensors[i].isVacant == true {
+//                            available += 1
+//                            //Network task executed in background
+//                            //But UITextfield can only display string which is processed in main thread
+//                            DispatchQueue.main.async {  //force network process into main thread
+//                                //                               get total number of available spots
+//                                //                                print(available)
+//                            }
+//                        }
+//                    }
+                    
                 }
                 catch {
                     print("Parsing error")
