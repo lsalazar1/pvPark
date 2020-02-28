@@ -11,7 +11,10 @@ axios.get(baseURI)
         assert.deepEqual(res.status, successCode, "Not connected right");
         console.log('Backend is connected...');
     })
-    .catch(err => console.error(err.message))
+    .catch(err => {
+        console.error(err.message);
+        exit(1);
+    });
 
 // Testing GET api/srcollins endpoint
 axios.get(baseURI+"api/srcollins")
@@ -24,7 +27,10 @@ axios.get(baseURI+"api/srcollins")
 
         console.log("api/srcollins works...");
     })
-    .catch(err => console.error(err.message))
+    .catch(err => {
+        console.error(err.message);
+        exit(1);
+    });
 
 // Testing GET api/newscience
 axios.get(baseURI+"api/newscience")
@@ -37,7 +43,10 @@ axios.get(baseURI+"api/newscience")
 
         console.log("api/newscience works...");
     })
-    .catch(err => console.error(err.message));
+    .catch(err => {
+        console.error(err.message);
+        exit(1);
+    });
 
 // Testing api/businessag
 axios.get(baseURI+"api/businessag")
@@ -50,16 +59,24 @@ axios.get(baseURI+"api/businessag")
 
         console.log("api/businessag works");
     })
-    .catch(err => console.error(err.message));
+    .catch(err => {
+        console.error(err.message);
+        exit(1);
+    });
 
 axios.get(baseURI+"api/msc")
     .then( res => {
         let lotName = res.data.lotName;
         let responseStatus = res.status;
 
-        assert.deepEqual(lotName, "msc", `Expected name to be msc but returned ${lotName}`);
+        assert.deepEqual(lotName, 'memorial student center', `Expected name to be msc but returned ${lotName}`);
         assert.deepEqual(responseStatus, successCode, `Expected a 200 Status Code but returned ${responseStatus}`);
 
-        console.log("api/msc works");
+        console.log("api/msc works...");
     })
-    .catch(err => console.log(err => console.log(err.message)));
+    .catch(err => {
+        console.error(err.message);
+        exit(1);
+    });
+
+assert.match("yas", 'yes')
