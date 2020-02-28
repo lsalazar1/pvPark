@@ -78,5 +78,3 @@ axios.get(baseURI+"api/msc")
         console.error(err.message);
         exit(1);
     });
-
-assert.match("yas", 'yes')
