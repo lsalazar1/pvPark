@@ -40,6 +40,16 @@ axios.get(baseURI+"api/newscience")
     })
     .catch(err => console.error(err.message));
 
-// Testing api/rasp
 
 // Testing api/businessag
+axios.get(baseURI+"api/businessag")
+    .then(res => {
+        let lotName = res.data.lotName;
+        let responseStatus = res.status;
+
+        assert.deepEqual(lotName, "businessag", `Expected name to be businessag but returned ${lotName}`);
+        assert.deepEqual(responseStatus, successCode, `Expected a 200 Status Code but returned ${responseStatus}`);
+
+        console.log("api/businessag works");
+    })
+    .catch(err => console.error(err.message));
