@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITextFieldDelegate {
     
 
     //variable section
@@ -37,6 +37,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lotThreeStatusOutlet: UIImageView!
     
     
+    @IBOutlet weak var srcollinsAvailable: UITextField!
+    
+    
     override func viewDidLoad() {
         func playBackgroundVideo() {
                     if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
@@ -55,8 +58,34 @@ class HomeViewController: UIViewController {
                 }
                 playBackgroundVideo()
         
-        //Fetch jSon object for lots from database
-        //read data from jSon through quads view controller
+        //Fetch jSon object for SRCollins from database
+        let urlStringSRC = "https://blooming-mountain-10766.herokuapp.com/api/srcollins"
+        let urlSRC = URL(string: urlStringSRC)
+        guard urlSRC != nil else {
+            return
+        }
+        let sessionSRC = URLSession.shared
+        let dataTaskSRC = sessionSRC.dataTask(with: urlSRC!) { (data, response, error) in
+            //Check for error
+            if error == nil && data != nil {
+                //Parse json
+                let decoder = JSONDecoder()
+            
+                do {
+                     //jSon object for the parking lot.
+                    let srcJson = try decoder.decode(lot.self, from: data!)
+
+                    //Display number of available spots
+                    self.srcollinsAvailable.text = String(srcJson.availableSpots)
+                }
+                catch {
+                    print("Parsing error")
+                }
+            }
+        }
+        //Make the API call
+        //dataTaskSRC.resume()
+        //Fetch jSon object for MSC from database
         let urlStringMSC = "https://blooming-mountain-10766.herokuapp.com/api/msc"
         let urlMSC = URL(string: urlStringMSC)
                guard urlMSC != nil else {
@@ -72,22 +101,9 @@ class HomeViewController: UIViewController {
                 do {
                      //jSon object for the parking lot.
                     let mscJson = try decoder.decode(lot.self, from: data!)
-                     //let nameSensor1: String = testLot.sensors.first?._id ?? ""
-                    
+
                     //Display number of available spots
-                    print(mscJson.availableSpots)
-//                    for i in 0...mscJson.sensors.count-1 {
-//                        if mscJson.sensors[i].isVacant == true {
-//                            available += 1
-//                            //Network task executed in background
-//                            //But UITextfield can only display string which is processed in main thread
-//                            DispatchQueue.main.async {  //force network process into main thread
-//                                //                               get total number of available spots
-//                                //                                print(available)
-//                            }
-//                        }
-//                    }
-                    
+                    print(mscJson.availableSpots)          
                 }
                 catch {
                     print("Parsing error")
@@ -95,7 +111,7 @@ class HomeViewController: UIViewController {
             }
         }
         //Make the API call
-        dataTaskMSC.resume()
+        //dataTaskMSC.resume()
             
         
         //lot status outlet initialization
@@ -143,6 +159,12 @@ class HomeViewController: UIViewController {
     @IBAction func closeMoreInfoButton(_ sender: Any) {
         moreInfoOutlet.isHidden = true
     }
+    @IBAction func srCMoreInfoButton(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let srcollinsViewController = storyBoard.instantiateViewController(withIdentifier: "srcollins") as! srCollinsViewController
+                self.present(srcollinsViewController, animated: true, completion: nil)
+    }
+    
     
     //tile 2
     @IBAction func lotDetailButton2(_ sender: Any) {

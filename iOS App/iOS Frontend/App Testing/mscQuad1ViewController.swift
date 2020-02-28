@@ -35,13 +35,10 @@ class mscQuad1ViewController: UIViewController {
                         do {
                             //jSon object for the parking lot.
                             let mscJson = try decoder.decode(lot.self, from: data!)
-//                            DispatchQueue.main.async {
-//                                var spot = UIImage(named: "car straight")!
-//                                self.qd1[0].image = spot
-//                            }
+//                           
                             var car = UIImage(named: "car straight")!
                             for i in 0...34 {
-                                if mscJson.sensors[i].isVacant == true {
+                                if mscJson.sensors[i].isVacant == false {
                                     //Network task executed in background
                                     //But UITextfield can only display string which is processed in main thread
                                     DispatchQueue.main.async {  //force network process into main thread
@@ -56,7 +53,7 @@ class mscQuad1ViewController: UIViewController {
                     }
                 }
                 //Make the API call
-                dataTaskMSC.resume()
+                //dataTaskMSC.resume()
             
         
         func playBackgroundVideo() {
