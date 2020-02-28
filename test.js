@@ -14,7 +14,7 @@ axios.get(baseURI)
     .catch(err => console.error(err.message))
 
 // Testing GET api/srcollins endpoint
-axios.get(baseURI+"api/srcollins...")
+axios.get(baseURI+"api/srcollins")
     .then(res => {
         let lotName = res.data.lotName;
         let responseStatus = res.status;
@@ -51,3 +51,15 @@ axios.get(baseURI+"api/businessag")
         console.log("api/businessag works");
     })
     .catch(err => console.error(err.message));
+
+axios.get(baseURI+"api/msc")
+    .then( res => {
+        let lotName = res.data.lotName;
+        let responseStatus = res.status;
+
+        assert.deepEqual(lotName, "msc", `Expected name to be msc but returned ${lotName}`);
+        assert.deepEqual(responseStatus, successCode, `Expected a 200 Status Code but returned ${responseStatus}`);
+
+        console.log("api/msc works");
+    })
+    .catch(err => console.log(err => console.log(err.message)));
