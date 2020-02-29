@@ -1,5 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://lsalazar1:lsalazar1@cluster0-dq0xn.mongodb.net/test?retryWrites=true&w=majority",
-    "saltValue": 10,
-    "jwtToken": "theSecret_Token"
-}
