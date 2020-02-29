@@ -53,7 +53,7 @@ class mscQuad1ViewController: UIViewController {
                     }
                 }
                 //Make the API call
-                //dataTaskMSC.resume()
+                dataTaskMSC.resume()
             
         
         func playBackgroundVideo() {

@@ -76,7 +76,9 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
                     let srcJson = try decoder.decode(lot.self, from: data!)
 
                     //Display number of available spots
-                    self.srcollinsAvailable.text = String(srcJson.availableSpots)
+                    DispatchQueue.main.async{
+                        self.srcollinsAvailable.text = String(srcJson.availableSpots)
+                    }
                 }
                 catch {
                     print("Parsing error")
@@ -84,34 +86,34 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             }
         }
         //Make the API call
-        //dataTaskSRC.resume()
+        dataTaskSRC.resume()
         //Fetch jSon object for MSC from database
-        let urlStringMSC = "https://blooming-mountain-10766.herokuapp.com/api/msc"
-        let urlMSC = URL(string: urlStringMSC)
-               guard urlMSC != nil else {
-                   return
-               }
-        let sessionMSC = URLSession.shared
-        let dataTaskMSC = sessionMSC.dataTask(with: urlMSC!) { (data, response, error) in
-            //Check for error
-            if error == nil && data != nil {
-                //Parse json
-                let decoder = JSONDecoder()
-            
-                do {
-                     //jSon object for the parking lot.
-                    let mscJson = try decoder.decode(lot.self, from: data!)
-
-                    //Display number of available spots
-                    print(mscJson.availableSpots)          
-                }
-                catch {
-                    print("Parsing error")
-                }
-            }
-        }
-        //Make the API call
-        //dataTaskMSC.resume()
+//        let urlStringMSC = "https://blooming-mountain-10766.herokuapp.com/api/msc"
+//        let urlMSC = URL(string: urlStringMSC)
+//               guard urlMSC != nil else {
+//                   return
+//               }
+//        let sessionMSC = URLSession.shared
+//        let dataTaskMSC = sessionMSC.dataTask(with: urlMSC!) { (data, response, error) in
+//            //Check for error
+//            if error == nil && data != nil {
+//                //Parse json
+//                let decoder = JSONDecoder()
+//
+//                do {
+//                     //jSon object for the parking lot.
+//                    let mscJson = try decoder.decode(lot.self, from: data!)
+//
+//                    //Display number of available spots
+//                    //print(mscJson.availableSpots)
+//                }
+//                catch {
+//                    print("Parsing error")
+//                }
+//            }
+//        }
+//        //Make the API call
+//        dataTaskMSC.resume()
             
         
         //lot status outlet initialization

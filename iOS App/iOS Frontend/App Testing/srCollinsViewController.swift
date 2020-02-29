@@ -34,9 +34,9 @@ class srCollinsViewController: UIViewController {
                                 do {
                                     //jSon object for the parking lot.
                                     let srcJson = try decoder.decode(lot.self, from: data!)
-        //
+        
                                     var car = UIImage(named: "car straight")!
-                                    for i in 0...5 {
+                                    for i in 0...srcJson.sensors.count-1 {
                                         if srcJson.sensors[i].isVacant == false {
                                             //Network task executed in background
                                             //But UITextfield can only display string which is processed in main thread
@@ -52,7 +52,7 @@ class srCollinsViewController: UIViewController {
                             }
                         }
                         //Make the API call
-                        //dataTaskSRC.resume()
+                        dataTaskSRC.resume()
         
         func playBackgroundVideo() {
             if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
