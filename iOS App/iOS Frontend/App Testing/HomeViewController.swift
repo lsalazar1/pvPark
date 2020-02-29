@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITextFieldDelegate {
     
 
     //variable section
@@ -37,6 +37,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lotThreeStatusOutlet: UIImageView!
     
     
+    @IBOutlet weak var srcollinsAvailable: UITextField!
+    
+    
     override func viewDidLoad() {
         func playBackgroundVideo() {
                     if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
@@ -54,6 +57,64 @@ class HomeViewController: UIViewController {
                     }
                 }
                 playBackgroundVideo()
+        
+        //Fetch jSon object for SRCollins from database
+        let urlStringSRC = "https://blooming-mountain-10766.herokuapp.com/api/srcollins"
+        let urlSRC = URL(string: urlStringSRC)
+        guard urlSRC != nil else {
+            return
+        }
+        let sessionSRC = URLSession.shared
+        let dataTaskSRC = sessionSRC.dataTask(with: urlSRC!) { (data, response, error) in
+            //Check for error
+            if error == nil && data != nil {
+                //Parse json
+                let decoder = JSONDecoder()
+            
+                do {
+                     //jSon object for the parking lot.
+                    let srcJson = try decoder.decode(lot.self, from: data!)
+
+                    //Display number of available spots
+                    DispatchQueue.main.async{
+                        self.srcollinsAvailable.text = String(srcJson.availableSpots)
+                    }
+                }
+                catch {
+                    print("Parsing error")
+                }
+            }
+        }
+        //Make the API call
+        dataTaskSRC.resume()
+        //Fetch jSon object for MSC from database
+//        let urlStringMSC = "https://blooming-mountain-10766.herokuapp.com/api/msc"
+//        let urlMSC = URL(string: urlStringMSC)
+//               guard urlMSC != nil else {
+//                   return
+//               }
+//        let sessionMSC = URLSession.shared
+//        let dataTaskMSC = sessionMSC.dataTask(with: urlMSC!) { (data, response, error) in
+//            //Check for error
+//            if error == nil && data != nil {
+//                //Parse json
+//                let decoder = JSONDecoder()
+//
+//                do {
+//                     //jSon object for the parking lot.
+//                    let mscJson = try decoder.decode(lot.self, from: data!)
+//
+//                    //Display number of available spots
+//                    //print(mscJson.availableSpots)
+//                }
+//                catch {
+//                    print("Parsing error")
+//                }
+//            }
+//        }
+//        //Make the API call
+//        dataTaskMSC.resume()
+            
         
         //lot status outlet initialization
         if availableSpots == 0{    //lot full
@@ -79,7 +140,7 @@ class HomeViewController: UIViewController {
         moreInfoOutlet.isHidden = true
         moreInfoOutlet2.isHidden = true
         moreInfoOutlet3.isHidden = true
-            }
+    }
     
     @IBAction func logOutButton(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -100,6 +161,12 @@ class HomeViewController: UIViewController {
     @IBAction func closeMoreInfoButton(_ sender: Any) {
         moreInfoOutlet.isHidden = true
     }
+    @IBAction func srCMoreInfoButton(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let srcollinsViewController = storyBoard.instantiateViewController(withIdentifier: "srcollins") as! srCollinsViewController
+                self.present(srcollinsViewController, animated: true, completion: nil)
+    }
+    
     
     //tile 2
     @IBAction func lotDetailButton2(_ sender: Any) {
