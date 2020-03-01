@@ -10,7 +10,6 @@ import UIKit
 import AVFoundation
 
 class HomeViewController: UIViewController, UITextFieldDelegate {
-    
 
     //variable section
     var player: AVPlayer?
@@ -39,8 +38,14 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var srcollinsAvailable: UITextField!
     
+    var src = lot(lotName: "", availableSpots: 0, sensors: [])
+    
+    var myTimerSRC = Timer()
     
     override func viewDidLoad() {
+        loadSRC()
+        myTimerSRC = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.loadSRC), userInfo: nil, repeats: true)
+        
         func playBackgroundVideo() {
                     if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
                         let filePathUrl = NSURL.fileURL(withPath: filePath)
@@ -58,62 +63,9 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
                 }
                 playBackgroundVideo()
         
-        //Fetch jSon object for SRCollins from database
-        let urlStringSRC = "https://blooming-mountain-10766.herokuapp.com/api/srcollins"
-        let urlSRC = URL(string: urlStringSRC)
-        guard urlSRC != nil else {
-            return
-        }
-        let sessionSRC = URLSession.shared
-        let dataTaskSRC = sessionSRC.dataTask(with: urlSRC!) { (data, response, error) in
-            //Check for error
-            if error == nil && data != nil {
-                //Parse json
-                let decoder = JSONDecoder()
-            
-                do {
-                     //jSon object for the parking lot.
-                    let srcJson = try decoder.decode(lot.self, from: data!)
-
-                    //Display number of available spots
-                    DispatchQueue.main.async{
-                        self.srcollinsAvailable.text = String(srcJson.availableSpots)
-                    }
-                }
-                catch {
-                    print("Parsing error")
-                }
-            }
-        }
-        //Make the API call
-        dataTaskSRC.resume()
-        //Fetch jSon object for MSC from database
-//        let urlStringMSC = "https://blooming-mountain-10766.herokuapp.com/api/msc"
-//        let urlMSC = URL(string: urlStringMSC)
-//               guard urlMSC != nil else {
-//                   return
-//               }
-//        let sessionMSC = URLSession.shared
-//        let dataTaskMSC = sessionMSC.dataTask(with: urlMSC!) { (data, response, error) in
-//            //Check for error
-//            if error == nil && data != nil {
-//                //Parse json
-//                let decoder = JSONDecoder()
-//
-//                do {
-//                     //jSon object for the parking lot.
-//                    let mscJson = try decoder.decode(lot.self, from: data!)
-//
-//                    //Display number of available spots
-//                    //print(mscJson.availableSpots)
-//                }
-//                catch {
-//                    print("Parsing error")
-//                }
-//            }
-//        }
-//        //Make the API call
-//        dataTaskMSC.resume()
+        
+        
+    
             
         
         //lot status outlet initialization
@@ -193,5 +145,40 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         let mscViewController = storyBoard.instantiateViewController(withIdentifier: "mscView") as! MSCViewController
         self.present(mscViewController, animated: true, completion: nil)
     }
+    
+    //Function to fetch jSon object for SRCollins from database
+    @objc func loadSRC() {
+        let urlStringSRC = "https://blooming-mountain-10766.herokuapp.com/api/srcollins"
+        let urlSRC = URL(string: urlStringSRC)
+        guard urlSRC != nil else {
+            return
+        }
+        let sessionSRC = URLSession.shared
+        let dataTaskSRC = sessionSRC.dataTask(with: urlSRC!) { (data, response, error) in
+            //Check for error
+            if error == nil && data != nil {
+                //Parse json
+                let decoder = JSONDecoder()
+            
+                do {
+                     //jSon object for the parking lot.
+                    let srcJson = try decoder.decode(lot.self, from: data!)
+                    self.src = srcJson//copy parsed data to global variable src
+
+                    //Display number of available spots
+                    DispatchQueue.main.async{
+                        self.srcollinsAvailable.text = String(srcJson.availableSpots)
+                    }
+                }
+                catch {
+                    print("Parsing error")
+                }
+            }
+        }
+        //Make the API call
+        dataTaskSRC.resume()
+        print(String(src.availableSpots))
+    }
+    
     
 }
