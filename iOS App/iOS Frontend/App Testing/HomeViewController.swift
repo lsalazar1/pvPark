@@ -37,30 +37,32 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var srcollinsAvailable: UITextField!
-    
+    //used as global variables to access data from other view controllers
     var src = lot(lotName: "", availableSpots: 0, sensors: [])
     
     var myTimerSRC = Timer()
     
     override func viewDidLoad() {
+        //fetch data once storyboard is switched to this view controller
+        //also make sure the continous http get is done ONLY when the view is active
         loadSRC()
         myTimerSRC = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.loadSRC), userInfo: nil, repeats: true)
         
         func playBackgroundVideo() {
-                    if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
-                        let filePathUrl = NSURL.fileURL(withPath: filePath)
-                        player = AVPlayer(url: filePathUrl)
-                        let playerLayer = AVPlayerLayer(player: player)
-                        playerLayer.frame = self.backgroundOutlet.bounds
-                        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-                        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem, queue: nil) { (_) in
-                            self.player?.seek(to: CMTime.zero)
-                            self.player?.play()
-                        }
-                        self.backgroundOutlet.layer.addSublayer(playerLayer)
-                        player?.play()
-                    }
+            if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
+                let filePathUrl = NSURL.fileURL(withPath: filePath)
+                player = AVPlayer(url: filePathUrl)
+                let playerLayer = AVPlayerLayer(player: player)
+                playerLayer.frame = self.backgroundOutlet.bounds
+                playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+                NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem, queue: nil) { (_) in
+                    self.player?.seek(to: CMTime.zero)
+                    self.player?.play()
                 }
+                self.backgroundOutlet.layer.addSublayer(playerLayer)
+                player?.play()
+            }
+        }
                 playBackgroundVideo()
         
         
@@ -113,12 +115,12 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     @IBAction func closeMoreInfoButton(_ sender: Any) {
         moreInfoOutlet.isHidden = true
     }
-    @IBAction func srCMoreInfoButton(_ sender: Any) {
+    @IBAction func srcMoreInfoButton(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let srcollinsViewController = storyBoard.instantiateViewController(withIdentifier: "srcollins") as! srCollinsViewController
                 self.present(srcollinsViewController, animated: true, completion: nil)
     }
-    
+   
     
     //tile 2
     @IBAction func lotDetailButton2(_ sender: Any) {

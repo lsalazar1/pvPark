@@ -257,7 +257,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="srCMoreInfoButton:" destination="nfV-wF-gZK" eventType="touchUpInside" id="CZG-1z-v3o"/>
+                                                            <action selector="srcMoreInfoButton:" destination="nfV-wF-gZK" eventType="touchUpInside" id="8b2-zk-PaW"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="/168" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIz-10-1nT" userLabel="Numerical Status">
@@ -567,6 +567,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4rC-63-M7r"/>
                     </view>
+                    <navigationItem key="navigationItem" id="dDl-PE-etY"/>
                     <connections>
                         <outlet property="backgroundOutlet" destination="gFq-6k-hX4" id="Lrg-ry-qqo"/>
                         <outletCollection property="src" destination="01z-Dw-ykG" collectionClass="NSMutableArray" id="vN9-vT-sTQ"/>
@@ -784,7 +785,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0bN-y0-mEf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1711.5942028985507" y="1415.625"/>
+            <point key="canvasLocation" x="2222" y="1003"/>
         </scene>
         <!--Msc Quad1 View Controller-->
         <scene sceneID="zRd-m9-jPc">
@@ -1208,7 +1209,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dza-cF-KFk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3200.0000000000005" y="841.74107142857144"/>
+            <point key="canvasLocation" x="3443" y="841"/>
         </scene>
         <!--Msc Quad2 View Controller-->
         <scene sceneID="gHv-5i-41K">
@@ -1240,7 +1241,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R2T-9q-DSj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3200" y="1756"/>
+            <point key="canvasLocation" x="3200" y="1831"/>
         </scene>
         <!--Msc Quad4 View Controller-->
         <scene sceneID="Ipm-6F-FgZ">
