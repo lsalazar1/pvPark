@@ -10,8 +10,10 @@ import pymongo
 import dns
 
 class ParkingLot:
-    # When initializing an instance of ParkingLot, connect to MongoDB
     def __init__(self, lotName, totalSpots):
+        '''
+        When initializing an instance of ParkingLot, connect to MongoDB
+        '''
         self.lotName = lotName.replace(' ', '').lower()
         self.parkingDataCollectionName = self.lotName
 
@@ -23,15 +25,18 @@ class ParkingLot:
         # Create/Search for a database called test
         self.database = self.connection['test']
         self.collection = self.database[self.lotName]
-        
     
-    # Counts the number of sensors available to the parking lot's collection
     def countSensors(self):
+        '''
+        Counts the number of sensors available to the parking lot's collection
+        '''
         return len(self.collection.find_one()['sensors'])
 
-    # Create a sensor for parking lot with echo and trigger as params
     def createUS(self, echo, trigger):
-        
+        '''
+        Create a sensor for parking lot with echo and trigger as params
+        '''
+
         # Each index in sensorsList will have this object per sensor
         info = {
             '_id': '',
@@ -45,9 +50,6 @@ class ParkingLot:
         # Naming convention is first three chars of lot name and place in sensorsList
         info['_id'] = self.lotName[:3] + str(self.countSensors())
         print('Sensor  %s is initializing' % info['_id'])
-
-        # Alters info['isVacant'] value based on sensor's reading... use sensor as a param 
-        # info['isVacant'] = False if sensor.distance < 0.004 else True
 
         self.collection.update_one(
             { 'lotName': self.lotName },
@@ -84,9 +86,10 @@ class ParkingLot:
 
         print('Total available spaces in lot is: {}'.format(availableSpots))
 
-
-    # Drops parking lot's collection within Mongo when stopping the script via keyboard
     def killProgram(self):
+        '''
+        Drops parking lot's collection within Mongo when stopping the script via keyboard
+        '''
         print('Killing program...')
 
         self.collection.update_one(
