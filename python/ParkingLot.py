@@ -56,25 +56,23 @@ class ParkingLot:
         
         sensor.close()
 
-    # Loop through each document in the lot's collection and track the changes within the spaces
     def run(self):
-        listSensors = self.collection.find_one()['sensors']
+        '''
+        Loop through each document in the lot's collection and track the changes within the spaces.
+        '''
         availableSpots = 0
 
-        for sensor in listSensors:
-            echo = sensor['echo']
-            trigger = sensor['trigger']
-            sid = sensor['_id']
+        for sensor in self.collection.find_one()['sensors']:
             
-            sensorClass = DistanceSensor(echo = echo, trigger = trigger, max_distance = 0.06, threshold_distance = 0.005)
-            vacant = False if sensorClass.distance < 0.0254 else True
+            sensorClass = DistanceSensor(echo = sensor['echo'], trigger = sensor['trigger'], max_distance = 0.06, threshold_distance = 0.005)
+            sensor.isVacant = False if sensorClass.distance < 0.0254 else True
 
-            if vacant == True:
+            if sensor.isVacant == True:
                 availableSpots += 1 
 
             self.collection.update_one(
-                {'lotName': self.lotName, 'sensors._id': sid },
-                {'$set' : { 'sensors.$.isVacant' : vacant }}
+                {'lotName': self.lotName, 'sensors._id': sensor['_id'] },
+                {'$set' : { 'sensors.$.isVacant' : sensor.isVacant }}
             )
             
             sensorClass.close()
