@@ -12,7 +12,8 @@ import dns
 class ParkingLot:
     def __init__(self, lotName, totalSpots):
         '''
-        When initializing an instance of ParkingLot, connect to MongoDB
+        When initializing an instance of ParkingLot,
+        connect to MongoDB
         '''
         self.lotName = lotName.replace(' ', '').lower()
         self.parkingDataCollectionName = self.lotName
@@ -28,13 +29,15 @@ class ParkingLot:
     
     def countSensors(self):
         '''
-        Counts the number of sensors available to the parking lot's collection
+        Counts the number of sensors available to
+        the parking lot's collection
         '''
         return len(self.collection.find_one()['sensors'])
 
     def createUS(self, echo, trigger):
         '''
-        Create a sensor for parking lot with echo and trigger as params
+        Create a sensor for parking lot with echo
+        and trigger as params.
         '''
 
         # Each index in sensorsList will have this object per sensor
@@ -60,21 +63,22 @@ class ParkingLot:
 
     def run(self):
         '''
-        Loop through each document in the lot's collection and track the changes within the spaces.
+        Loop through each document in the lot's collection and
+        track the changes within the spaces.
         '''
         availableSpots = 0
 
         for sensor in self.collection.find_one()['sensors']:
             
             sensorClass = DistanceSensor(echo = sensor['echo'], trigger = sensor['trigger'], max_distance = 0.06, threshold_distance = 0.005)
-            sensor.isVacant = False if sensorClass.distance < 0.0254 else True
+            sensor["isVacant"] = False if sensorClass.distance < 0.0254 else True
 
-            if sensor.isVacant == True:
+            if sensor["isVacant"] == True:
                 availableSpots += 1 
 
             self.collection.update_one(
                 {'lotName': self.lotName, 'sensors._id': sensor['_id'] },
-                {'$set' : { 'sensors.$.isVacant' : sensor.isVacant }}
+                {'$set' : { 'sensors.$.isVacant' : sensor["isVacant"] }}
             )
             
             sensorClass.close()
@@ -88,7 +92,8 @@ class ParkingLot:
 
     def killProgram(self):
         '''
-        Drops parking lot's collection within Mongo when stopping the script via keyboard
+        Drops parking lot's collection within Mongo
+        when stopping the script via keyboard.
         '''
         print('Killing program...')
 
@@ -96,7 +101,9 @@ class ParkingLot:
             {'lotName': self.lotName},
             {'$set': {'sensors': [], 'availableSpots': 0} }
         )
-
-  
-            
+    
+    def test(self):
+        senList = self.collection.find_one()["sensors"]
+        
+        print(senList[0]["isVacant"])           
 
