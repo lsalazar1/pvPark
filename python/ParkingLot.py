@@ -89,7 +89,13 @@ class ParkingLot:
         )
 
         print('Total available spaces in lot is: {}'.format(availableSpots))
-
+        print('{}: {}'.format(self.collection.find_one()["sensors"][0]["_id"], self.collection.find_one()["sensors"][0]["isVacant"]))
+        print('{}: {}'.format(self.collection.find_one()["sensors"][1]["_id"], self.collection.find_one()["sensors"][1]["isVacant"]))
+        print('{}: {}'.format(self.collection.find_one()["sensors"][2]["_id"], self.collection.find_one()["sensors"][2]["isVacant"]))
+        print('{}: {}'.format(self.collection.find_one()["sensors"][3]["_id"], self.collection.find_one()["sensors"][3]["isVacant"]))
+        print('{}: {}'.format(self.collection.find_one()["sensors"][4]["_id"], self.collection.find_one()["sensors"][4]["isVacant"]))
+        print('{}: {}'.format(self.collection.find_one()["sensors"][5]["_id"], self.collection.find_one()["sensors"][5]["isVacant"]))
+        
     def killProgram(self):
         '''
         Drops parking lot's collection within Mongo
