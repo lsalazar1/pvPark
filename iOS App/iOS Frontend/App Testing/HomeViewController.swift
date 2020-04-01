@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     var totalSpotsMSC = 200
     var availableSpots = 4
     var testSpots = 3
+    
     var color = UIImage(named: "hollow")
     
     //outlet section
@@ -46,7 +47,8 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         //fetch data once storyboard is switched to this view controller
         //also make sure the continous http get is done ONLY when the view is active
         loadSRC()
-        myTimerSRC = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.loadSRC), userInfo: nil, repeats: true)
+//        myTimerSRC = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.loadSRC), userInfo: nil, repeats: true)
+        
         
         func playBackgroundVideo() {
             if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
@@ -182,5 +184,11 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         print(String(src.availableSpots))
     }
     
+  //refresh function
+    @IBAction func refreshFunc(_ sender: Any) {
+        loadSRC()
+        //loadTestLot
+        //loadMsc
+    }
     
 }

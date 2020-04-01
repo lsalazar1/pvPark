@@ -425,6 +425,14 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <viewLayoutGuide key="safeArea" id="Tdy-MK-VGR"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-RF-R8R">
+                                        <rect key="frame" x="172" y="43" width="70" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="ref.png"/>
+                                        <connections>
+                                            <action selector="refreshFunc:" destination="nfV-wF-gZK" eventType="touchUpInside" id="xnV-L1-lSR"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="safeArea" id="G7t-Kw-1GN"/>
@@ -1270,6 +1278,7 @@
         <image name="groundQuad1.jpg" width="159.83999633789062" height="127.19999694824219"/>
         <image name="groundTextureMSC.jpg" width="271.5" height="198.75"/>
         <image name="hollow.png" width="100" height="100"/>
+        <image name="ref.png" width="100" height="100"/>
         <image name="settings.png" width="36" height="36"/>
     </resources>
 </document>
