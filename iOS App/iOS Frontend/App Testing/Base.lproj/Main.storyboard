@@ -257,16 +257,9 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="srCMoreInfoButton:" destination="nfV-wF-gZK" eventType="touchUpInside" id="CZG-1z-v3o"/>
+                                                            <action selector="srcMoreInfoButton:" destination="nfV-wF-gZK" eventType="touchUpInside" id="8b2-zk-PaW"/>
                                                         </connections>
                                                     </button>
-                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xJN-Ro-3zX">
-                                                        <rect key="frame" x="260" y="33" width="37" height="34"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="/168" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIz-10-1nT" userLabel="Numerical Status">
                                                         <rect key="frame" x="313" y="30" width="63" height="36"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -274,6 +267,13 @@
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xJN-Ro-3zX">
+                                                        <rect key="frame" x="268" y="31" width="37" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
@@ -425,6 +425,14 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <viewLayoutGuide key="safeArea" id="Tdy-MK-VGR"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-RF-R8R">
+                                        <rect key="frame" x="172" y="43" width="70" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="ref.png"/>
+                                        <connections>
+                                            <action selector="refreshFunc:" destination="nfV-wF-gZK" eventType="touchUpInside" id="xnV-L1-lSR"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="safeArea" id="G7t-Kw-1GN"/>
@@ -567,6 +575,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4rC-63-M7r"/>
                     </view>
+                    <navigationItem key="navigationItem" id="dDl-PE-etY"/>
                     <connections>
                         <outlet property="backgroundOutlet" destination="gFq-6k-hX4" id="Lrg-ry-qqo"/>
                         <outletCollection property="src" destination="01z-Dw-ykG" collectionClass="NSMutableArray" id="vN9-vT-sTQ"/>
@@ -784,7 +793,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0bN-y0-mEf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1711.5942028985507" y="1415.625"/>
+            <point key="canvasLocation" x="2222" y="1003"/>
         </scene>
         <!--Msc Quad1 View Controller-->
         <scene sceneID="zRd-m9-jPc">
@@ -1208,7 +1217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dza-cF-KFk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3200.0000000000005" y="841.74107142857144"/>
+            <point key="canvasLocation" x="3443" y="841"/>
         </scene>
         <!--Msc Quad2 View Controller-->
         <scene sceneID="gHv-5i-41K">
@@ -1240,7 +1249,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R2T-9q-DSj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3200" y="1756"/>
+            <point key="canvasLocation" x="3200" y="1831"/>
         </scene>
         <!--Msc Quad4 View Controller-->
         <scene sceneID="Ipm-6F-FgZ">
@@ -1269,6 +1278,7 @@
         <image name="groundQuad1.jpg" width="159.83999633789062" height="127.19999694824219"/>
         <image name="groundTextureMSC.jpg" width="271.5" height="198.75"/>
         <image name="hollow.png" width="100" height="100"/>
+        <image name="ref.png" width="100" height="100"/>
         <image name="settings.png" width="36" height="36"/>
     </resources>
 </document>
