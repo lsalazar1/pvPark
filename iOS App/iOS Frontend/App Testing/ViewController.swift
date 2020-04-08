@@ -76,10 +76,10 @@ class ViewController: UIViewController {
     
     //Action for submit button on the registration page
     @IBAction func registerSubmitButton(_ sender: Any) {
-        var email = emailOutlet.text!
-        var username = usernameOutlet.text!
-        var password = passwordOutlet.text!
-        var confPassword = confirmPasswordOutlet.text!
+        let email = emailOutlet.text!
+        let username = usernameOutlet.text!
+        let password = passwordOutlet.text!
+        let confPassword = confirmPasswordOutlet.text!
         //fields check
         if (email.count > 22 && email.count <= 35) && (email[email.index(email.endIndex, offsetBy: -18)..<email.endIndex] == "@student.pvamu.edu") && (username.count > 5 && username.count <= 20) && (password.count > 5 && username.count <= 20) && (confPassword == password) {
             //send
