@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Play background video
         func playBackgroundVideo() {
                     if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
                         let filePathUrl = NSURL.fileURL(withPath: filePath)
@@ -48,7 +49,11 @@ class ViewController: UIViewController {
                 }
                 playBackgroundVideo()
         registrationOutlet.isHidden = true
-            }
+        //Hide keyboard
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+    }
+    
     
     //Actions Section:
     //Action for forgot username/password
@@ -67,14 +72,40 @@ class ViewController: UIViewController {
     @IBAction func registerButton(_ sender: Any) {
         registrationOutlet.isHidden = false
     }
-    //Action for the registration page submit button
+    //Action for submit button on the registration page
     @IBAction func registerSubmitButton(_ sender: Any) {
-        registrationOutlet.isHidden = true
+        var email = emailOutlet.text!
+        var username = usernameOutlet.text!
+        var password = passwordOutlet.text!
+        var confPassword = confirmPasswordOutlet.text!
+        //email field check
+        if (email.count > 22 && email.count <= 35) && (email[email.index(email.endIndex, offsetBy: -18)..<email.endIndex] == "@student.pvamu.edu") && (username.count > 5 && username.count <= 20) && (password.count > 5 && username.count <= 20) && (confPassword == password) {
+            print("Good job")
+        }
+        else {
+            displayAlert(msgTitle: "Error", msgContent: "Wrong input. Please ensure that you are using a PV student e-mail or all fields are properly filled.")
+        }
+        
+
+        
     }
     //Action for the regristration page cancel button
     @IBAction func registerCancelButton(_ sender: Any) {
+        emailOutlet.text = ""
+        usernameOutlet.text = ""
+        passwordOutlet.text = ""
+        confirmPasswordOutlet.text = ""
         registrationOutlet.isHidden = true
     }
+    //Display alert message when there is a incorrect entry
+    func displayAlert(msgTitle:String, msgContent:String){
+        let alertController = UIAlertController(title: msgTitle, message: msgContent, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
+    }
+
+    
 }
 
 
