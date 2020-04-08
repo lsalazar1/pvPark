@@ -68,27 +68,35 @@ class ViewController: UIViewController {
                 homeViewController.isModalInPresentation = true // available in IOS13
             }
     }
+    
     //Action for the home page register button
     @IBAction func registerButton(_ sender: Any) {
         registrationOutlet.isHidden = false
     }
+    
     //Action for submit button on the registration page
     @IBAction func registerSubmitButton(_ sender: Any) {
         var email = emailOutlet.text!
         var username = usernameOutlet.text!
         var password = passwordOutlet.text!
         var confPassword = confirmPasswordOutlet.text!
-        //email field check
+        //fields check
         if (email.count > 22 && email.count <= 35) && (email[email.index(email.endIndex, offsetBy: -18)..<email.endIndex] == "@student.pvamu.edu") && (username.count > 5 && username.count <= 20) && (password.count > 5 && username.count <= 20) && (confPassword == password) {
-            print("Good job")
+            //send
+            sendData(name: username, pass: password, mail: email)
+            displayAlert(msgTitle: "Registration processed", msgContent: "Check your email to complete registration")
+            //clear all fields and display login page
+            emailOutlet.text = ""
+            usernameOutlet.text = ""
+            passwordOutlet.text = ""
+            confirmPasswordOutlet.text = ""
+            registrationOutlet.isHidden = true
         }
         else {
             displayAlert(msgTitle: "Error", msgContent: "Wrong input. Please ensure that you are using a PV student e-mail or all fields are properly filled.")
         }
-        
-
-        
     }
+    
     //Action for the regristration page cancel button
     @IBAction func registerCancelButton(_ sender: Any) {
         emailOutlet.text = ""
@@ -97,6 +105,7 @@ class ViewController: UIViewController {
         confirmPasswordOutlet.text = ""
         registrationOutlet.isHidden = true
     }
+    
     //Display alert message when there is a incorrect entry
     func displayAlert(msgTitle:String, msgContent:String){
         let alertController = UIAlertController(title: msgTitle, message: msgContent, preferredStyle: .alert)
@@ -105,6 +114,37 @@ class ViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
+    //Http POST function
+    @objc func sendData(name:String, pass:String, mail: String) {
+        // Create a variable with required params being sent
+        let params = ["email":"\(mail)", "password":"\(pass)", "username":"\(name)"]
+         //print(params)
+         guard let url = URL(string: "http://10.160.4.168:5000/api/users") else { return }
+
+         var request = URLRequest(url: url)
+         request.httpMethod = "POST"
+
+         guard let httpBody = try? JSONSerialization.data(withJSONObject: params, options: .fragmentsAllowed) else { return }
+         request.httpBody = httpBody
+         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+         print("\n~~~~\(httpBody)\n~~~~~~\n")
+
+         let session = URLSession.shared
+         session.dataTask(with: request) { (data, response, error) in
+             if let response = response {
+                 print(response)
+             }
+
+             if let data = data {
+                 do {
+                     let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                     print(json)
+                 } catch {
+                     print(error)
+                 }
+             }
+         }.resume()
+    }
     
 }
 
