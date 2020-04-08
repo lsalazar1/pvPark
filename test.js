@@ -80,7 +80,7 @@ axios.get(baseURI+"api/businessag")
         assert.deepEqual(lotName, "businessag", `Expected name to be businessag but returned ${lotName}`);
         assert.deepEqual(responseStatus, successCode, `Expected a 200 Status Code but returned ${responseStatus}`);
 
-        console.log("api/businessag works");
+        console.log("api/businessag works...");
     })
     .catch(err => {
         console.error(err.message);
@@ -103,23 +103,26 @@ axios.get(baseURI+"api/msc")
         exit(1);
     });
 
-// POST api/users
+/** 
+** This for-loop wil iterate through the registerData JSON and automatically 
+** register each user through the "api/users" endpoint.
+*/
 for (let i = 0; i < registerData.length; i++) {
 
+    // Destructure each key from JSON registerData
     let {username, name, password, email, expected} = registerData[i];
-    let num_test_passing = 0;
-
     let body = JSON.stringify({username, name, password, email});
 
+    // Use axios to make an HTTP POST request with the body and config settings
     axios.post(baseURI + 'api/users', body, config)
         .then(res => {
             let responseStatus = res.status;
 
             assert.deepEqual(responseStatus, expected, `Expected ${expected} but received ${responseStatus}`);
-            num_test_passing += 1;
+            console.log(`api/users... Test Case [${i}] passing`);
         })
         .catch(err => {
-            console.error(`api/users... ${num_test_passing} case(s) passed... Failing at [${i}]`);
+            console.error(err.message + `... Failing at [${i}]`);
             exit(1);
-        })
+        })  
 }
