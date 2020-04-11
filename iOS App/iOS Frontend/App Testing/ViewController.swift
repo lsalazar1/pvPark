@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var registrationOutlet: UIVisualEffectView!
     
     //Outlets for text fields in the registration view
+    @IBOutlet weak var fullNameOutlet: UITextField!
     @IBOutlet weak var emailOutlet: UITextField!
     @IBOutlet weak var usernameOutlet: UITextField!
     @IBOutlet weak var passwordOutlet: UITextField!
@@ -76,16 +77,18 @@ class ViewController: UIViewController {
     
     //Action for submit button on the registration page
     @IBAction func registerSubmitButton(_ sender: Any) {
+        let fullName = fullNameOutlet.text!
         let email = emailOutlet.text!
         let username = usernameOutlet.text!
         let password = passwordOutlet.text!
         let confPassword = confirmPasswordOutlet.text!
         //fields check
-        if (email.count > 22 && email.count <= 35) && (email[email.index(email.endIndex, offsetBy: -18)..<email.endIndex] == "@student.pvamu.edu") && (username.count > 5 && username.count <= 20) && (password.count > 5 && username.count <= 20) && (confPassword == password) {
+        if (fullName.count > 0 && fullName.count <= 20) && (email.count > 22 && email.count <= 35) && (email[email.index(email.endIndex, offsetBy: -9)..<email.endIndex] == "pvamu.edu") && (username.count >= 4 && username.count <= 15) && (password.count >= 8) && (confPassword == password) {
             //send
-            sendData(name: username, pass: password, mail: email)
+            sendData(fullName: fullName, mail: email, pass: password, username: username)
             displayAlert(msgTitle: "Registration processed", msgContent: "Check your email to complete registration")
             //clear all fields and display login page
+            fullNameOutlet.text = ""
             emailOutlet.text = ""
             usernameOutlet.text = ""
             passwordOutlet.text = ""
@@ -93,12 +96,13 @@ class ViewController: UIViewController {
             registrationOutlet.isHidden = true
         }
         else {
-            displayAlert(msgTitle: "Error", msgContent: "Wrong input. Please ensure that you are using a PV student e-mail or all fields are properly filled.")
+            displayAlert(msgTitle: "Wrong input", msgContent: "Please ensure that all fields are properly filled (must use tour PV email)")
         }
     }
     
     //Action for the regristration page cancel button
     @IBAction func registerCancelButton(_ sender: Any) {
+        fullNameOutlet.text = ""
         emailOutlet.text = ""
         usernameOutlet.text = ""
         passwordOutlet.text = ""
@@ -115,11 +119,11 @@ class ViewController: UIViewController {
     }
 
     //Http POST function
-    @objc func sendData(name:String, pass:String, mail: String) {
+    @objc func sendData(fullName:String, mail:String, pass:String, username:String) {
         // Create a variable with required params being sent
-        let params = ["email":"\(mail)", "password":"\(pass)", "username":"\(name)"]
+        let params = ["name":"\(fullName)", "email":"\(mail)", "password":"\(pass)", "username":"\(username)"]
          //print(params)
-         guard let url = URL(string: "http://10.160.4.168:5000/api/users") else { return }
+         guard let url = URL(string: "https://blooming-mountain-10766.herokuapp.com/api/users") else { return }
 
          var request = URLRequest(url: url)
          request.httpMethod = "POST"
