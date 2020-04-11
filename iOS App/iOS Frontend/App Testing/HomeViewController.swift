@@ -36,8 +36,9 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lotTwoStatusOutlet: UIImageView!
     @IBOutlet weak var lotThreeStatusOutlet: UIImageView!
     
+    @IBOutlet weak var srCollinsAvailable: UILabel!
     
-    @IBOutlet weak var srcollinsAvailable: UITextField!
+    
     //used as global variables to access data from other view controllers
     var src = lot(lotName: "", availableSpots: 0, sensors: [])
     
@@ -171,7 +172,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
 
                     //Display number of available spots
                     DispatchQueue.main.async{
-                        self.srcollinsAvailable.text = String(srcJson.availableSpots)
+                        self.srCollinsAvailable.text = String(srcJson.availableSpots)
                     }
                 }
                 catch {

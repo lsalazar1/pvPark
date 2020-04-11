@@ -267,13 +267,13 @@
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xJN-Ro-3zX">
-                                                        <rect key="frame" x="268" y="31" width="37" height="34"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2H-Yz-uQd">
+                                                        <rect key="frame" x="274" y="39" width="31" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
@@ -450,7 +450,7 @@
                         <outlet property="moreInfoOutlet" destination="bcl-hr-Bd8" id="MW2-my-Icc"/>
                         <outlet property="moreInfoOutlet2" destination="LC3-Oq-gnS" id="kzc-3q-0Wf"/>
                         <outlet property="moreInfoOutlet3" destination="7G5-tt-DmW" id="8jW-d3-NLI"/>
-                        <outlet property="srcollinsAvailable" destination="xJN-Ro-3zX" id="K0l-dd-hlN"/>
+                        <outlet property="srCollinsAvailable" destination="x2H-Yz-uQd" id="03k-M8-hBS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTx-32-bfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
