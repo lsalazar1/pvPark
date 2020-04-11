@@ -37,6 +37,7 @@ class ViewController: UIViewController {
                     if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
                         let filePathUrl = NSURL.fileURL(withPath: filePath)
                         player = AVPlayer(url: filePathUrl)
+                        player!.preventsDisplaySleepDuringVideoPlayback = false  //keeps video from deactivating screen auto lock
                         let playerLayer = AVPlayerLayer(player: player)
                         playerLayer.frame = self.backgroundOutlet.bounds
                         playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
@@ -83,7 +84,7 @@ class ViewController: UIViewController {
         let password = passwordOutlet.text!
         let confPassword = confirmPasswordOutlet.text!
         //fields check
-        if (fullName.count > 0 && fullName.count <= 20) && (email.count > 22 && email.count <= 35) && (email[email.index(email.endIndex, offsetBy: -9)..<email.endIndex] == "pvamu.edu") && (username.count >= 4 && username.count <= 15) && (password.count >= 8) && (confPassword == password) {
+        if (fullName.count > 0 && fullName.count <= 20) && (email.count > 15 && email.count <= 35) && (email[email.index(email.endIndex, offsetBy: -9)..<email.endIndex] == "pvamu.edu") && (username.count >= 4 && username.count <= 15) && (password.count >= 8) && (confPassword == password) {
             //send
             sendData(fullName: fullName, mail: email, pass: password, username: username)
             displayAlert(msgTitle: "Registration processed", msgContent: "Check your email to complete registration")
@@ -123,7 +124,9 @@ class ViewController: UIViewController {
         // Create a variable with required params being sent
         let params = ["name":"\(fullName)", "email":"\(mail)", "password":"\(pass)", "username":"\(username)"]
          //print(params)
-         guard let url = URL(string: "https://blooming-mountain-10766.herokuapp.com/api/users") else { return }
+//         guard let url = URL(string: "https://blooming-mountain-10766.herokuapp.com/api/users") else { return }
+        //test with local machine
+        guard let url = URL(string: "http://192.168.3.100:5000/api/users") else { return }
 
          var request = URLRequest(url: url)
          request.httpMethod = "POST"
