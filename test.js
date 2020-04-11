@@ -3,8 +3,6 @@ const assert=require('assert');
 
 const baseURI = "https://blooming-mountain-10766.herokuapp.com/";
 
-const successCode = 200;
-
 const config = {
     headers: {
         'Content-Type': 'application/json'
@@ -25,13 +23,32 @@ const registerData = [
         "email": "jbiden@pvamu.edu",
         "name": "Joe Biden",
         "expected": 200
+    },
+    {
+        "username": "cool_guy10",
+        "password": "ackabacka10",
+        "email": "cguy@pvamu.edu",
+        "expected": 400
+    },
+    {
+        "username": "cool_guy11",
+        "name": "Teddy Roosevelt",
+        "password": "tr@pvamu.edu",
+        "expected": 400
+    },
+    {
+        "username": "helloWorld10",
+        "name": "George Washington",
+        "password": "ackabacka10",
+        "email": "hello@aol.com",
+        "expected": 400
     }
 ]
 
 // Testing if backend is connected
 axios.get(baseURI)
     .then(res => {
-        assert.deepEqual(res.status, successCode, "Not connected right");
+        assert.deepEqual(res.status, 200, "Not connected right");
         console.log('Backend is connected...');
     })
     .catch(err => {
@@ -46,7 +63,7 @@ axios.get(baseURI+"api/srcollins")
         let responseStatus = res.status;
 
         assert.deepEqual(lotName, "srcollins", `Expected name to be srcollins but returned ${lotName}`);
-        assert.deepEqual(responseStatus, successCode, `Expected a 200 Status Code but returned ${responseStatus}`);
+        assert.deepEqual(responseStatus, 200, `Expected a 200 Status Code but returned ${responseStatus}`);
 
         console.log("api/srcollins works...");
     })
@@ -62,7 +79,7 @@ axios.get(baseURI+"api/newscience")
         let responseStatus = res.status;
 
         assert.deepEqual(lotName, "newscience", `Expected name to be newscience but returned ${lotName}`);
-        assert.deepEqual(responseStatus, successCode, `Expected a 200 Status Code but returned ${responseStatus}`);
+        assert.deepEqual(responseStatus, 200, `Expected a 200 Status Code but returned ${responseStatus}`);
 
         console.log("api/newscience works...");
     })
@@ -78,7 +95,7 @@ axios.get(baseURI+"api/businessag")
         let responseStatus = res.status;
 
         assert.deepEqual(lotName, "businessag", `Expected name to be businessag but returned ${lotName}`);
-        assert.deepEqual(responseStatus, successCode, `Expected a 200 Status Code but returned ${responseStatus}`);
+        assert.deepEqual(responseStatus, 200, `Expected a 200 Status Code but returned ${responseStatus}`);
 
         console.log("api/businessag works...");
     })
@@ -94,7 +111,7 @@ axios.get(baseURI+"api/msc")
         let responseStatus = res.status;
 
         assert.deepEqual(lotName, 'memorial student center', `Expected name to be msc but returned ${lotName}`);
-        assert.deepEqual(responseStatus, successCode, `Expected a 200 Status Code but returned ${responseStatus}`);
+        assert.deepEqual(responseStatus, 200, `Expected a 200 Status Code but returned ${responseStatus}`);
 
         console.log("api/msc works...");
     })
@@ -122,7 +139,12 @@ for (let i = 0; i < registerData.length; i++) {
             console.log(`api/users... Test Case [${i}] passing`);
         })
         .catch(err => {
-            console.error(err.message + `... Failing at [${i}]`);
-            exit(1);
-        })  
+            if (err.response.status == registerData[i].expected) {
+                console.log(`api/users... Negative Test Case [${i}] passing`);
+            }
+            else {
+                console.error(`api/users... Failing at Test Case [${i}]`);
+                exit(1);
+            }
+        })
 }
