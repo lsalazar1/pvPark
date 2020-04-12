@@ -24,6 +24,7 @@ class MSCViewController: UIViewController {
             if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
                 let filePathUrl = NSURL.fileURL(withPath: filePath)
                 player = AVPlayer(url: filePathUrl)
+                player!.preventsDisplaySleepDuringVideoPlayback = false  //keeps video from deactivating screen auto lock
                 let playerLayer = AVPlayerLayer(player: player)
                 playerLayer.frame = self.backgroundOutlet.bounds
                 playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill

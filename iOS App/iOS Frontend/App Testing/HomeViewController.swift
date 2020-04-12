@@ -36,8 +36,9 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lotTwoStatusOutlet: UIImageView!
     @IBOutlet weak var lotThreeStatusOutlet: UIImageView!
     
+    @IBOutlet weak var srCollinsAvailable: UILabel!
     
-    @IBOutlet weak var srcollinsAvailable: UITextField!
+    
     //used as global variables to access data from other view controllers
     var src = lot(lotName: "", availableSpots: 0, sensors: [])
     
@@ -54,6 +55,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
                 let filePathUrl = NSURL.fileURL(withPath: filePath)
                 player = AVPlayer(url: filePathUrl)
+                player!.preventsDisplaySleepDuringVideoPlayback = false  //keeps video from deactivating screen auto lock
                 let playerLayer = AVPlayerLayer(player: player)
                 playerLayer.frame = self.backgroundOutlet.bounds
                 playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
@@ -171,7 +173,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
 
                     //Display number of available spots
                     DispatchQueue.main.async{
-                        self.srcollinsAvailable.text = String(srcJson.availableSpots)
+                        self.srCollinsAvailable.text = String(srcJson.availableSpots)
                     }
                 }
                 catch {
