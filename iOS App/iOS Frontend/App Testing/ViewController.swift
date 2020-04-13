@@ -13,7 +13,7 @@ class ViewController: UIViewController {
 
     //Variable Decleration Section:
     var player: AVPlayer?
-    let homeViewController = HomeViewController()
+    //let homeViewController = HomeViewController() //Godson's auto log in code
     
     
     //Outlet Section:
@@ -22,6 +22,11 @@ class ViewController: UIViewController {
     
     //Outlet for the registration view
     @IBOutlet weak var registrationOutlet: UIVisualEffectView!
+    
+    //Outlets for text fields in the log in view
+    @IBOutlet weak var usernameOutletLogin: UITextField!
+    @IBOutlet weak var passwordOutletLogin: UITextField!
+    
     
     //Outlets for text fields in the registration view
     @IBOutlet weak var fullNameOutlet: UITextField!
@@ -63,12 +68,67 @@ class ViewController: UIViewController {
     }
     //Action for the home page login button
     @IBAction func loginButton(_ sender: Any) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let homeViewController = storyBoard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
-                self.present(homeViewController, animated: true, completion: nil)
-            if #available(iOS 13.0, *) {
-                homeViewController.isModalInPresentation = true // available in IOS13
+        let user = usernameOutletLogin.text!
+        let pass = passwordOutletLogin.text!
+                
+        let loginParams = ["username":"\(user)", "password":"\(pass)"]
+                
+        //Uncomment to use with local machine server
+        //guard let url = URL(string: "http://192.168.3.100:5000/api/auth") else { return }
+                
+        //Comment to use local server
+        guard let url = URL(string: "https://blooming-mountain-10766.herokuapp.com/api/auth") else { return }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: loginParams, options: .fragmentsAllowed) else { return }
+        request.httpBody = httpBody
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //print("\n~~~~\(httpBody)\n~~~~~~\n")
+
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+//            if let response = response {
+//                print(response)
+//            }
+                        
+            let myResponse = response as! HTTPURLResponse
+            if myResponse.statusCode == 400 {
+                DispatchQueue.main.async {
+                    self.displayAlert(msgTitle: "Error", msgContent: "User not found or wrong password")
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.usernameOutlet.text = ""
+                    self.passwordOutlet.text = ""
+                    //self.displayAlert(msgTitle: "Welcome " + user, msgContent: "")
+                                
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let homeView = storyBoard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+                            self.present(homeView, animated: true, completion: nil)
+                }
             }
+                        
+        //                 if let data = data {
+        //                     do {
+        //                         let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+        //                         print(json)
+        //
+        //                     } catch {
+        //                         print(error)
+        //                     }
+        //                 }
+        }.resume()
+        
+        
+        //Godson's auto log in code
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let homeViewController = storyBoard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+//                self.present(homeViewController, animated: true, completion: nil)
+//            if #available(iOS 13.0, *) {
+//                homeViewController.isModalInPresentation = true // available in IOS13
+//            }
     }
     
     //Action for the home page register button
@@ -124,9 +184,9 @@ class ViewController: UIViewController {
         // Create a variable with required params being sent
         let params = ["name":"\(fullName)", "email":"\(mail)", "password":"\(pass)", "username":"\(username)"]
          //print(params)
-//         guard let url = URL(string: "https://blooming-mountain-10766.herokuapp.com/api/users") else { return }
-        //test with local machine
-        guard let url = URL(string: "http://192.168.3.100:5000/api/users") else { return }
+         guard let url = URL(string: "https://blooming-mountain-10766.herokuapp.com/api/users") else { return }
+//        //test with local machine
+//        guard let url = URL(string: "http://192.168.3.100:5000/api/users") else { return }
 
          var request = URLRequest(url: url)
          request.httpMethod = "POST"
