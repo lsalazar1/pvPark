@@ -42,6 +42,17 @@ const registerData = [
         "password": "ackabacka10",
         "email": "hello@aol.com",
         "expected": 400
+    },
+    {
+        "name": "Karen",
+        "password": "supermarketlady23",
+        "email": "kareng73@pvamu.edu",
+        "expected": 400
+    },
+    {
+        "email": "face@pvamu.edu",
+        "password": "12345678",
+        "expected": 400
     }
 ]
 
