@@ -38,6 +38,7 @@
 		E457EB982408CF7C00D1D27F /* car straight.png in Resources */ = {isa = PBXBuildFile; fileRef = E457EB972408CF7C00D1D27F /* car straight.png */; };
 		E45BD8AB2409886200D03EF7 /* srCollinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45BD8AA2409886200D03EF7 /* srCollinsViewController.swift */; };
 		E45BD8B12409959000D03EF7 /* asphalt_srCollins.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45BD8B02409959000D03EF7 /* asphalt_srCollins.jpg */; };
+		E4FDA99E2434F7F50046DEF3 /* ref.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FDA99D2434F7F50046DEF3 /* ref.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		E457EB972408CF7C00D1D27F /* car straight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car straight.png"; sourceTree = SOURCE_ROOT; };
 		E45BD8AA2409886200D03EF7 /* srCollinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = srCollinsViewController.swift; sourceTree = "<group>"; };
 		E45BD8B02409959000D03EF7 /* asphalt_srCollins.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = asphalt_srCollins.jpg; sourceTree = "<group>"; };
+		E4FDA99D2434F7F50046DEF3 /* ref.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ref.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				E448911D240743A900C80F7C /* groundTextureMSC.jpg */,
 				2EEF8A4023E9E02C00ED0E05 /* hollow.png */,
 				2EEF8A3B23E9DF5000ED0E05 /* red.png */,
+				E4FDA99D2434F7F50046DEF3 /* ref.png */,
 				2E6AF67C23F32005001985D5 /* ground texture.png */,
 				2EA45A1E23EB6F0D009AF0EE /* car.png */,
 				2EA45A2023EB6F77009AF0EE /* car flipped.png */,
@@ -208,6 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4FDA99E2434F7F50046DEF3 /* ref.png in Resources */,
 				2EA45A1F23EB6F0D009AF0EE /* car.png in Resources */,
 				2E2A6FFF23E0ADA2001BB65F /* LaunchScreen.storyboard in Resources */,
 				2EA45A2323EB716C009AF0EE /* car straight.png in Resources */,
@@ -401,7 +405,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pvPark.AppTesting;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "App Testing";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -420,7 +424,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pvPark.AppTesting;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "App Testing";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

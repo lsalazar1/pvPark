@@ -19,45 +19,23 @@ class srCollinsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlStringSRC = "https://blooming-mountain-10766.herokuapp.com/api/srcollins"
-                        let urlSRC = URL(string: urlStringSRC)
-                               guard urlSRC != nil else {
-                                   return
-                               }
-                        let sessionSRC = URLSession.shared
-                        let dataTaskSRC = sessionSRC.dataTask(with: urlSRC!) { (data, response, error) in
-                            //Check for error
-                            if error == nil && data != nil {
-                                //Parse json
-                                let decoder = JSONDecoder()
-                            
-                                do {
-                                    //jSon object for the parking lot.
-                                    let srcJson = try decoder.decode(lot.self, from: data!)
+        //pointer to home page
+//        let homePage = self.tabBarController?.viewControllers?[1] as! HomeViewController
+//        var car = UIImage(named: "car straight")!
+//        print(homePage.src.availableSpots)
+//        for i in 0...homePage.src.sensors.count-1 {
+//            if homePage.src.sensors[i].isVacant == false {
+//                src[i].image = car
+//            }
+//        }
         
-                                    var car = UIImage(named: "car straight")!
-                                    for i in 0...srcJson.sensors.count-1 {
-                                        if srcJson.sensors[i].isVacant == false {
-                                            //Network task executed in background
-                                            //But UITextfield can only display string which is processed in main thread
-                                            DispatchQueue.main.async {  //force network process into main thread
-                                                self.src[i].image = car
-                                            }
-                                         }
-                                    }
-                                }
-                                catch {
-                                    print("Parsing error")
-                                }
-                            }
-                        }
-                        //Make the API call
-                        dataTaskSRC.resume()
+        loadSRC()
         
         func playBackgroundVideo() {
             if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
                 let filePathUrl = NSURL.fileURL(withPath: filePath)
                 player = AVPlayer(url: filePathUrl)
+                player!.preventsDisplaySleepDuringVideoPlayback = false  //keeps video from deactivating screen auto lock
                 let playerLayer = AVPlayerLayer(player: player)
                 playerLayer.frame = self.backgroundOutlet.bounds
                 playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
@@ -70,10 +48,45 @@ class srCollinsViewController: UIViewController {
             }
         }
         playBackgroundVideo()
-       
     }
     
+    @objc func loadSRC() {
+        let urlStringSRC = "https://blooming-mountain-10766.herokuapp.com/api/srcollins"
+        let urlSRC = URL(string: urlStringSRC)
+            guard urlSRC != nil else {
+                return
+            }
+        let sessionSRC = URLSession.shared
+        let dataTaskSRC = sessionSRC.dataTask(with: urlSRC!) { (data, response, error) in
+            //Check for error
+            if error == nil && data != nil {
+                //Parse json
+                let decoder = JSONDecoder()
 
-   
+                do {
+                    //jSon object for the parking lot.
+                    let srcJson = try decoder.decode(lot.self, from: data!)
+
+                    let car = UIImage(named: "car straight")!
+                    if srcJson.sensors.count-1 > 0 {
+                        for i in 0...srcJson.sensors.count-1 {
+                            if srcJson.sensors[i].isVacant == false {
+                                //Network task executed in background
+                                //But UITextfield can only display string which is processed in main thread
+                                DispatchQueue.main.async {  //force network process into main thread
+                                    self.src[i].image = car
+                                }
+                            }
+                        }
+                    }
+                }
+                catch {
+                    print("Parsing error")
+                }
+            }
+        }
+        //Make the API call
+        dataTaskSRC.resume()
+    }
 
 }

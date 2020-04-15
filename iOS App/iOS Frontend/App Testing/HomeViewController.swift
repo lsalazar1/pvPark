@@ -10,7 +10,6 @@ import UIKit
 import AVFoundation
 
 class HomeViewController: UIViewController, UITextFieldDelegate {
-    
 
     //variable section
     var player: AVPlayer?
@@ -21,6 +20,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     var totalSpotsMSC = 200
     var availableSpots = 4
     var testSpots = 3
+    
     var color = UIImage(named: "hollow")
     
     //outlet section
@@ -36,84 +36,42 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lotTwoStatusOutlet: UIImageView!
     @IBOutlet weak var lotThreeStatusOutlet: UIImageView!
     
+    @IBOutlet weak var srCollinsAvailable: UILabel!
     
-    @IBOutlet weak var srcollinsAvailable: UITextField!
     
+    //used as global variables to access data from other view controllers
+    var src = lot(lotName: "", availableSpots: 0, sensors: [])
+    
+    var myTimerSRC = Timer()
     
     override func viewDidLoad() {
-        func playBackgroundVideo() {
-                    if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
-                        let filePathUrl = NSURL.fileURL(withPath: filePath)
-                        player = AVPlayer(url: filePathUrl)
-                        let playerLayer = AVPlayerLayer(player: player)
-                        playerLayer.frame = self.backgroundOutlet.bounds
-                        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-                        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem, queue: nil) { (_) in
-                            self.player?.seek(to: CMTime.zero)
-                            self.player?.play()
-                        }
-                        self.backgroundOutlet.layer.addSublayer(playerLayer)
-                        player?.play()
-                    }
-                }
-                playBackgroundVideo()
+        //fetch data once storyboard is switched to this view controller
+        //also make sure the continous http get is done ONLY when the view is active
+        loadSRC()
+//        myTimerSRC = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.loadSRC), userInfo: nil, repeats: true)
         
-        //Fetch jSon object for SRCollins from database
-        let urlStringSRC = "https://blooming-mountain-10766.herokuapp.com/api/srcollins"
-        let urlSRC = URL(string: urlStringSRC)
-        guard urlSRC != nil else {
-            return
-        }
-        let sessionSRC = URLSession.shared
-        let dataTaskSRC = sessionSRC.dataTask(with: urlSRC!) { (data, response, error) in
-            //Check for error
-            if error == nil && data != nil {
-                //Parse json
-                let decoder = JSONDecoder()
-            
-                do {
-                     //jSon object for the parking lot.
-                    let srcJson = try decoder.decode(lot.self, from: data!)
-
-                    //Display number of available spots
-                    DispatchQueue.main.async{
-                        self.srcollinsAvailable.text = String(srcJson.availableSpots)
-                    }
+        
+        func playBackgroundVideo() {
+            if let filePath = Bundle.main.path(forResource: "Background", ofType:"mov") {
+                let filePathUrl = NSURL.fileURL(withPath: filePath)
+                player = AVPlayer(url: filePathUrl)
+                player!.preventsDisplaySleepDuringVideoPlayback = false  //keeps video from deactivating screen auto lock
+                let playerLayer = AVPlayerLayer(player: player)
+                playerLayer.frame = self.backgroundOutlet.bounds
+                playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+                NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem, queue: nil) { (_) in
+                    self.player?.seek(to: CMTime.zero)
+                    self.player?.play()
                 }
-                catch {
-                    print("Parsing error")
-                }
+                self.backgroundOutlet.layer.addSublayer(playerLayer)
+                player?.play()
             }
         }
-        //Make the API call
-        dataTaskSRC.resume()
-        //Fetch jSon object for MSC from database
-//        let urlStringMSC = "https://blooming-mountain-10766.herokuapp.com/api/msc"
-//        let urlMSC = URL(string: urlStringMSC)
-//               guard urlMSC != nil else {
-//                   return
-//               }
-//        let sessionMSC = URLSession.shared
-//        let dataTaskMSC = sessionMSC.dataTask(with: urlMSC!) { (data, response, error) in
-//            //Check for error
-//            if error == nil && data != nil {
-//                //Parse json
-//                let decoder = JSONDecoder()
-//
-//                do {
-//                     //jSon object for the parking lot.
-//                    let mscJson = try decoder.decode(lot.self, from: data!)
-//
-//                    //Display number of available spots
-//                    //print(mscJson.availableSpots)
-//                }
-//                catch {
-//                    print("Parsing error")
-//                }
-//            }
-//        }
-//        //Make the API call
-//        dataTaskMSC.resume()
+                playBackgroundVideo()
+        
+        
+        
+    
             
         
         //lot status outlet initialization
@@ -161,12 +119,12 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     @IBAction func closeMoreInfoButton(_ sender: Any) {
         moreInfoOutlet.isHidden = true
     }
-    @IBAction func srCMoreInfoButton(_ sender: Any) {
+    @IBAction func srcMoreInfoButton(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let srcollinsViewController = storyBoard.instantiateViewController(withIdentifier: "srcollins") as! srCollinsViewController
                 self.present(srcollinsViewController, animated: true, completion: nil)
     }
-    
+   
     
     //tile 2
     @IBAction func lotDetailButton2(_ sender: Any) {
@@ -192,6 +150,47 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let mscViewController = storyBoard.instantiateViewController(withIdentifier: "mscView") as! MSCViewController
         self.present(mscViewController, animated: true, completion: nil)
+    }
+    
+    //Function to fetch jSon object for SRCollins from database
+    @objc func loadSRC() {
+        let urlStringSRC = "https://blooming-mountain-10766.herokuapp.com/api/srcollins"
+        let urlSRC = URL(string: urlStringSRC)
+        guard urlSRC != nil else {
+            return
+        }
+        let sessionSRC = URLSession.shared
+        let dataTaskSRC = sessionSRC.dataTask(with: urlSRC!) { (data, response, error) in
+            //Check for error
+            if error == nil && data != nil {
+                //Parse json
+                let decoder = JSONDecoder()
+            
+                do {
+                     //jSon object for the parking lot.
+                    let srcJson = try decoder.decode(lot.self, from: data!)
+                    self.src = srcJson//copy parsed data to global variable src
+
+                    //Display number of available spots
+                    DispatchQueue.main.async{
+                        self.srCollinsAvailable.text = String(srcJson.availableSpots)
+                    }
+                }
+                catch {
+                    print("Parsing error")
+                }
+            }
+        }
+        //Make the API call
+        dataTaskSRC.resume()
+        print(String(src.availableSpots))
+    }
+    
+  //refresh function
+    @IBAction func refreshFunc(_ sender: Any) {
+        loadSRC()
+        //loadTestLot
+        //loadMsc
     }
     
 }
