@@ -62,9 +62,7 @@ class mscQuad1ViewController: UIViewController {
                     let car = UIImage(named: "car straight")!
                     for i in 0...34 {
                         if mscJson.sensors[i].isVacant == false {
-                            //Network task executed in background
-                            //But UITextfield can only display string which is processed in main thread
-                            DispatchQueue.main.async {  //force network process into main thread
+                            DispatchQueue.main.async {
                                 self.qd1[i].image = car
                             }
                         }
@@ -78,5 +76,11 @@ class mscQuad1ViewController: UIViewController {
         //Make the API call
         dataTaskMSC.resume()
     }
+    
+    //refresh button
+    @IBAction func refreshMSC(_ sender: Any) {
+        loadQuad1()
+    }
+    
 }
 

@@ -157,7 +157,7 @@ class ViewController: UIViewController {
             registrationOutlet.isHidden = true
         }
         else {
-            displayAlert(msgTitle: "Wrong input", msgContent: "Please ensure that all fields are properly filled (must use tour PV email)")
+            displayAlert(msgTitle: "Wrong input", msgContent: "Please ensure that all fields are properly filled (must use your PV email)")
         }
     }
     

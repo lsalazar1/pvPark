@@ -88,5 +88,11 @@ class srCollinsViewController: UIViewController {
         //Make the API call
         dataTaskSRC.resume()
     }
+    
+    //refresh button
+    @IBAction func refreshSRC(_ sender: Any) {
+        loadSRC()
+    }
+    
 
 }

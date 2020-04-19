@@ -28,10 +28,7 @@
 		2EEF8A4123E9E02C00ED0E05 /* hollow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EEF8A4023E9E02C00ED0E05 /* hollow.png */; };
 		97CF0ECA2406E77F0043402E /* MSCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CF0EC92406E77E0043402E /* MSCViewController.swift */; };
 		E448911E240743AA00C80F7C /* groundTextureMSC.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E448911D240743A900C80F7C /* groundTextureMSC.jpg */; };
-		E44891202407485900C80F7C /* mscQuad4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E448911F2407485900C80F7C /* mscQuad4ViewController.swift */; };
 		E4491F502407298C00E02EC2 /* mscQuad1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4491F4F2407298C00E02EC2 /* mscQuad1ViewController.swift */; };
-		E4491F52240729BA00E02EC2 /* mscQuad2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4491F51240729BA00E02EC2 /* mscQuad2ViewController.swift */; };
-		E4491F54240729E700E02EC2 /* mscQuad3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4491F53240729E700E02EC2 /* mscQuad3ViewController.swift */; };
 		E457EB922408789100D1D27F /* lot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457EB912408789100D1D27F /* lot.swift */; };
 		E457EB94240878AA00D1D27F /* sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457EB93240878AA00D1D27F /* sensor.swift */; };
 		E457EB96240887B400D1D27F /* groundQuad1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E457EB95240887B400D1D27F /* groundQuad1.jpg */; };
@@ -65,10 +62,7 @@
 		2EEF8A4023E9E02C00ED0E05 /* hollow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hollow.png; sourceTree = SOURCE_ROOT; };
 		97CF0EC92406E77E0043402E /* MSCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSCViewController.swift; sourceTree = "<group>"; };
 		E448911D240743A900C80F7C /* groundTextureMSC.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = groundTextureMSC.jpg; sourceTree = "<group>"; };
-		E448911F2407485900C80F7C /* mscQuad4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mscQuad4ViewController.swift; sourceTree = "<group>"; };
 		E4491F4F2407298C00E02EC2 /* mscQuad1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mscQuad1ViewController.swift; sourceTree = "<group>"; };
-		E4491F51240729BA00E02EC2 /* mscQuad2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mscQuad2ViewController.swift; sourceTree = "<group>"; };
-		E4491F53240729E700E02EC2 /* mscQuad3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mscQuad3ViewController.swift; sourceTree = "<group>"; };
 		E457EB912408789100D1D27F /* lot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lot.swift; sourceTree = "<group>"; };
 		E457EB93240878AA00D1D27F /* sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sensor.swift; sourceTree = "<group>"; };
 		E457EB95240887B400D1D27F /* groundQuad1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = groundQuad1.jpg; sourceTree = "<group>"; };
@@ -117,9 +111,6 @@
 				2EA45A1823EB52BE009AF0EE /* TestLotViewController.swift */,
 				97CF0EC92406E77E0043402E /* MSCViewController.swift */,
 				E4491F4F2407298C00E02EC2 /* mscQuad1ViewController.swift */,
-				E4491F51240729BA00E02EC2 /* mscQuad2ViewController.swift */,
-				E4491F53240729E700E02EC2 /* mscQuad3ViewController.swift */,
-				E448911F2407485900C80F7C /* mscQuad4ViewController.swift */,
 				2E2A6FFB23E0ADA2001BB65F /* Assets.xcassets */,
 				2E2A6FFD23E0ADA2001BB65F /* LaunchScreen.storyboard */,
 				2E2A700023E0ADA2001BB65F /* Info.plist */,
@@ -248,10 +239,7 @@
 				E457EB94240878AA00D1D27F /* sensor.swift in Sources */,
 				2E2A6FF523E0ADA2001BB65F /* SceneDelegate.swift in Sources */,
 				E45BD8AB2409886200D03EF7 /* srCollinsViewController.swift in Sources */,
-				E4491F52240729BA00E02EC2 /* mscQuad2ViewController.swift in Sources */,
 				E457EB922408789100D1D27F /* lot.swift in Sources */,
-				E4491F54240729E700E02EC2 /* mscQuad3ViewController.swift in Sources */,
-				E44891202407485900C80F7C /* mscQuad4ViewController.swift in Sources */,
 				2E0895BD23E213E20035A1CA /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
