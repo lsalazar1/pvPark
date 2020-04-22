@@ -89,10 +89,6 @@ class ViewController: UIViewController {
 
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in
-//            if let response = response {
-//                print(response)
-//            }
-                        
             let myResponse = response as! HTTPURLResponse
             if myResponse.statusCode == 400 {
                 DispatchQueue.main.async {
@@ -107,28 +103,14 @@ class ViewController: UIViewController {
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let homeView = storyBoard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
                             self.present(homeView, animated: true, completion: nil)
+                    if #available(iOS 13.0, *) {
+                        homeView.isModalInPresentation = true // available in IOS13
+                    }
                 }
             }
-                        
-        //                 if let data = data {
-        //                     do {
-        //                         let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-        //                         print(json)
-        //
-        //                     } catch {
-        //                         print(error)
-        //                     }
-        //                 }
         }.resume()
         
-        
-        //Godson's auto log in code
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let homeViewController = storyBoard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
-//                self.present(homeViewController, animated: true, completion: nil)
-//            if #available(iOS 13.0, *) {
-//                homeViewController.isModalInPresentation = true // available in IOS13
-//            }
+
     }
     
     //Action for the home page register button

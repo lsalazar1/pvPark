@@ -71,9 +71,7 @@ class srCollinsViewController: UIViewController {
                     if srcJson.sensors.count-1 > 0 {
                         for i in 0...srcJson.sensors.count-1 {
                             if srcJson.sensors[i].isVacant == false {
-                                //Network task executed in background
-                                //But UITextfield can only display string which is processed in main thread
-                                DispatchQueue.main.async {  //force network process into main thread
+                                DispatchQueue.main.async {
                                     self.src[i].image = car
                                 }
                             }

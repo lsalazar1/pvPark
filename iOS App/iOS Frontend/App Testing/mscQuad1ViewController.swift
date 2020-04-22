@@ -78,7 +78,8 @@ class mscQuad1ViewController: UIViewController {
     }
     
     //refresh button
-    @IBAction func refreshMSC(_ sender: Any) {
+    
+    @IBAction func refreshMSC1(_ sender: Any) {
         loadQuad1()
     }
     
